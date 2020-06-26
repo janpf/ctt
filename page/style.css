@@ -1,0 +1,23 @@
+.container {
+    margin: 2em auto;
+    display: grid;
+    width: 70%;
+    max-width: 1300px;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+
+#validVis {
+    grid-column: 1;
+    align-self: stretch;
+}
+#publishedVis {
+    grid-column: 2;
+    align-self: stretch;
+}
+/*
+#files{
+    grid-column: 1/3;
+    align-self: stretch;
+}
+*/

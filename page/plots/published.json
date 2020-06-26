@@ -1,0 +1,24 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "title": "number of valid keys published per day",
+    "width": "container",
+    "height": 250,
+    "data": {
+        "url": "./plots/data.json"
+    },
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "timeUnit": "utcmonthdate",
+            "field": "date",
+            "type": "temporal",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "published",
+            "type": "quantitative"
+        }
+    }
+}

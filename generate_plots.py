@@ -7,6 +7,7 @@ data = dict()
 data["overall"] = dict()
 data["overall"]["publishDate"] = dict()
 data["overall"]["validDate"] = dict()
+data["overall"]["publishDateRisk"] = dict()
 data["overall"]["validDateRisk"] = dict()
 
 for f in sorted(Path("page/json").iterdir()):

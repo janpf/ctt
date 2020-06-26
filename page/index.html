@@ -1,0 +1,24 @@
+<head>
+    <title>Corona Tracker Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.12.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.13.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.8.0"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="container">
+    <h1>Corona Tracker Tracker</h1>
+    <div id="validVis"></div>
+    <script type="text/javascript">
+        var spec = "./plots/valid.json";
+        vegaEmbed('#validVis', spec).then(function (result) {
+        }).catch(console.error);
+    </script>
+    <div id="publishedVis"></div>
+    <script type="text/javascript">
+        var spec = "./plots/published.json";
+        vegaEmbed('#publishedVis', spec).then(function (result) {
+        }).catch(console.error);
+    </script>
+</body>
