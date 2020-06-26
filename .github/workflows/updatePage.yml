@@ -14,11 +14,17 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: main
+
       - name: checkout parser tool
         uses: actions/checkout@v2
         with:
           repository: mh-/diagnosis-keys
           path: diagnosis-keys
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
 
       - name: install requirements
         working-directory: main
