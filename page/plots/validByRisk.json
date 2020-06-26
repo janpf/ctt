@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "number of valid keys per day by risk level",
+  "width": "container",
+  "height": 250,
+  "data": {
+    "url": "./plots/dataByRisk.json"
+  },
+  "layer": [
+    {
+      "encoding": {
+        "x": {
+          "timeUnit": "utcmonthdate",
+          "field": "date",
+          "type": "temporal",
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "valid",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "risk",
+          "type": "ordinal"
+        }
+      },
+      "layer": [
+        {
+          "mark": "line"
+        },
+        {
+          "selection": {
+            "label": {
+              "type": "single",
+              "nearest": true,
+              "on": "mouseover",
+              "encodings": [
+                "x"
+              ],
+              "empty": "none"
+            }
+          },
+          "mark": "point",
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "selection": "label",
+                "value": 1
+              },
+              "value": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "selection": "label"
+          }
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "gray"
+          },
+          "encoding": {
+            "x": {
+              "timeUnit": "utcmonthdate",
+              "field": "date",
+              "type": "temporal",
+              "axis": {
+                "labelAngle": 0
+              }
+            }
+          }
+        },
+        {
+          "encoding": {
+            "text": {
+              "type": "quantitative",
+              "field": "risk"
+            },
+            "x": {
+              "timeUnit": "utcmonthdate",
+              "field": "date",
+              "type": "temporal",
+              "axis": {
+                "labelAngle": 0
+              }
+            },
+            "y": {
+              "type": "quantitative",
+              "field": "valid"
+            }
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "text",
+                "stroke": "white",
+                "strokeWidth": 2,
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+              },
+              "encoding": {
+                "color": {
+                  "type": "ordinal",
+                  "field": "risk"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

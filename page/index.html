@@ -21,4 +21,17 @@
         vegaEmbed('#publishedVis', spec).then(function (result) {
         }).catch(console.error);
     </script>
+
+    <div id="validByRiskVis"></div>
+    <script type="text/javascript">
+        var spec = "./plots/validByRisk.json";
+        vegaEmbed('#validByRiskVis', spec).then(function (result) {
+        }).catch(console.error);
+    </script>
+    <div id="publishedByRiskVis"></div>
+    <script type="text/javascript">
+        var spec = "./plots/publishedByRisk.json";
+        vegaEmbed('#publishedByRiskVis', spec).then(function (result) {
+        }).catch(console.error);
+    </script>
 </body>
