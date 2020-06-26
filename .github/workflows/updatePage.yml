@@ -1,0 +1,54 @@
+name: update page
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update_page:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout project
+        uses: actions/checkout@v2
+        with:
+          path: main
+      - name: Checkout parser tool
+          uses: actions/checkout@v2
+          with:
+            repository: mh-/diagnosis-keys
+            path: diagnosis-keys
+
+      - name: install requirements
+        working-directory: main
+        run: pip install -r requirements.txt
+
+      - name: install tool requirements
+        working-directory: diagnosis-keys
+        run: pip install -r requirements.txt
+
+      - name: download files
+        working-directory: main
+        run: python downloader.py
+
+      - name: generate json files
+        working-directory: main
+        run: bash create_json.sh
+
+      - name: generate plaintext files
+        working-directory: main
+        run: bash create_plaintext.sh
+
+      - name: generate plots
+        working-directory: main
+        run: python generate_plots.py
+
+      - name: publish
+        working-directory: main
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=page
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
