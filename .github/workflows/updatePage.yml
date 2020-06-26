@@ -15,10 +15,10 @@ jobs:
         with:
           path: main
       - name: Checkout parser tool
-          uses: actions/checkout@v2
-          with:
-            repository: mh-/diagnosis-keys
-            path: diagnosis-keys
+        uses: actions/checkout@v2
+        with:
+          repository: mh-/diagnosis-keys
+          path: diagnosis-keys
 
       - name: install requirements
         working-directory: main
