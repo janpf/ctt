@@ -14,5 +14,5 @@ for date in available_dates:
     print(f"downloading file for {date}")
     file_url = f"{dates_url}/{date}"
     r = requests.get(file_url)
-    with open(f"keys/{date}.zip", "wb") as f:
+    with open(f"page/keys/{date}.zip", "wb") as f:
         f.write(r.content)
