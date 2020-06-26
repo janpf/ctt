@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "title": "number of valid keys per day",
+    "title": "number of keys valid per day",
     "width": "container",
     "height": 250,
     "data": {
@@ -13,7 +13,8 @@
             "field": "date",
             "type": "temporal",
             "axis": {
-                "labelAngle": 0
+                "labelAngle": 0,
+                "tickCount": "day"
             }
         },
         "y": {

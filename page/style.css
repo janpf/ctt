@@ -1,8 +1,7 @@
 .container {
     margin: 2em auto;
     display: grid;
-    width: 70%;
-    max-width: 1300px;
+    width: 80%;
     grid-template-columns: 1fr 1fr;
     grid-gap: 30px;
 }
@@ -12,6 +11,14 @@
     align-self: stretch;
 }
 #publishedVis {
+    grid-column: 2;
+    align-self: stretch;
+}
+#validByRiskVis {
+    grid-column: 1;
+    align-self: stretch;
+}
+#publishedByRiskVis {
     grid-column: 2;
     align-self: stretch;
 }

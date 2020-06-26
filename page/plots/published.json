@@ -13,7 +13,8 @@
             "field": "date",
             "type": "temporal",
             "axis": {
-                "labelAngle": 0
+                "labelAngle": 0,
+                "tickCount": "day"
             }
         },
         "y": {
