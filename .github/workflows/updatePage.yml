@@ -45,7 +45,6 @@ jobs:
         run: python generate_plots.py
 
       - name: publish
-        working-directory: main
         uses: netlify/actions/cli@master
         with:
           args: deploy --dir=page
