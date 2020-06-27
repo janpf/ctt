@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "title": "number of valid keys published per day",
+    "title": "number of keys published per day",
     "width": "container",
     "height": 250,
     "data": {
