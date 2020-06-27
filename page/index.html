@@ -61,16 +61,20 @@
                         <input type="radio" id="{{ date }}-txt" name="{{ date }}-group-nested" checked>
                         <label for="{{ date }}-txt">plaintext</label>
                         <div class="content">
-                            <a href="/plaintext/{{ date }}.txt">download</a>
-                            <!--<object data="/plaintext/{{ date }}.txt" type="text/plain" height="100%" width="100%"></object> -->
+                            <a href="/plaintext/{{ date }}.txt" target="_blank">download</a>
+                            <button
+                                onClick="document.getElementById('plaintext{{ date }}').setAttribute('data', '/plaintext/{{ date }}.txt')">display</button>
+                            <object id="plaintext{{ date }}" type="text/plain" height="100%" width="100%"></object>
                         </div>
                     </div>
                     <div class="tab">
                         <input type="radio" id="{{ date }}-json" name="{{ date }}-group-nested">
                         <label for="{{ date }}-json">json</label>
                         <div class="content">
-                            <a href="/json/{{ date }}.json">download</a>
-                            <!--<object data="/json/{{ date }}.json" type="text/json" height="100%" width="100%"></object> -->
+                            <a href="/json/{{ date }}.json" target="_blank">download</a>
+                            <button
+                                onClick="document.getElementById('json{{ date }}').setAttribute('data', '/json/{{ date }}.json')">display</button>
+                            <object id="json{{ date }}" type="text/json" height="100%" width="100%"></object>
                         </div>
                     </div>
                 </div>
