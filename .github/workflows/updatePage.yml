@@ -52,6 +52,10 @@ jobs:
         working-directory: main
         run: python generate_plots.py
 
+      - name: generate html
+        working-directory: main
+        run: python generate_html.py
+
       - name: publish
         uses: netlify/actions/cli@master
         with:
