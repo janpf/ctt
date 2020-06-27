@@ -38,7 +38,7 @@ jobs:
 
       - name: download files
         working-directory: main
-        run: python downloader.py
+        run: python download_files.py
 
       - name: generate json files
         working-directory: main

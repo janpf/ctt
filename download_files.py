@@ -8,7 +8,7 @@ country = "DE"
 
 dates_url = f"{protocol}{host}/version/{version}/diagnosis-keys/country/{country}/date"
 available_dates = requests.get(dates_url).json()
-print(f"available date: {available_dates}")
+print(f"available dates: {available_dates}")
 
 for date in available_dates:
     print(f"downloading file for {date}")
