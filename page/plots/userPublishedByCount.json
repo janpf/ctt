@@ -30,12 +30,12 @@
         },
         "color": {
           "field": "key_count",
-          "type": "ordinal"
+          "type": "quantitative"
         }
       },
       "layer": [
         {
-          "mark": "line"
+          "mark": "point"
         },
         {
           "selection": {
@@ -126,7 +126,7 @@
               },
               "encoding": {
                 "color": {
-                  "type": "ordinal",
+                  "type": "quantitative",
                   "field": "key_count"
                 }
               }
