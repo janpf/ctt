@@ -1,14 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": "number of keys valid per day by risk level",
+  "title": "number of keys published per user per day (approx.)",
   "width": "container",
   "height": 250,
   "data": {
-    "url": "./plots/dataByRisk.json"
+    "url": "./plots/usersByCount.json"
   },
   "transform": [
     {
-      "calculate": "datum.valid + ' keys with risk lvl ' + datum.risk",
+      "calculate": "datum.user_count + ' users uploaded ' + datum.key_count + ' keys'",
       "as": "tt"
     }
   ],
@@ -25,11 +25,11 @@
           }
         },
         "y": {
-          "field": "valid",
+          "field": "user_count",
           "type": "quantitative"
         },
         "color": {
-          "field": "risk",
+          "field": "key_count",
           "type": "ordinal"
         }
       },
@@ -103,7 +103,7 @@
             },
             "y": {
               "type": "quantitative",
-              "field": "valid"
+              "field": "user_count"
             }
           },
           "layer": [
@@ -127,7 +127,7 @@
               "encoding": {
                 "color": {
                   "type": "ordinal",
-                  "field": "risk"
+                  "field": "key_count"
                 }
               }
             }

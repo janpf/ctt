@@ -10,21 +10,16 @@ body {
     grid-gap: 30px;
 }
 
-#validVis {
-    grid-column: 1;
+.vega-embed {
     align-self: stretch;
 }
-#publishedVis {
-    grid-column: 2;
-    align-self: stretch;
+
+.left{
+  grid-column: 1;
 }
-#validByRiskVis {
-    grid-column: 1;
-    align-self: stretch;
-}
-#publishedByRiskVis {
-    grid-column: 2;
-    align-self: stretch;
+
+.right{
+  grid-column: 2;
 }
 
 .heading {

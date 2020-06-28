@@ -6,6 +6,12 @@
   "data": {
     "url": "./plots/dataByRisk.json"
   },
+  "transform": [
+    {
+      "calculate": "datum.published + ' keys with risk lvl ' + datum.risk",
+      "as": "tt"
+    }
+  ],
   "layer": [
     {
       "encoding": {
@@ -84,8 +90,8 @@
         {
           "encoding": {
             "text": {
-              "type": "quantitative",
-              "field": "risk"
+              "type": "text",
+              "field": "tt"
             },
             "x": {
               "timeUnit": "utcmonthdate",

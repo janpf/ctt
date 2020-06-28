@@ -1,0 +1,25 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "title": "number of users publishing keys (approx.)",
+    "width": "container",
+    "height": 250,
+    "data": {
+        "url": "./plots/data.json"
+    },
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "timeUnit": "utcmonthdate",
+            "field": "date",
+            "type": "temporal",
+            "axis": {
+                "labelAngle": 0,
+                "tickCount": "day"
+            }
+        },
+        "y": {
+            "field": "users_published",
+            "type": "quantitative"
+        }
+    }
+}

@@ -13,8 +13,8 @@
             <a href="https://github.com/janpf/ctt/actions" target="_blank">
                 <img style="vertical-align:middle" src="https://github.com/janpf/ctt/workflows/update%20page/badge.svg">
             </a>
-
-            <a href="https://github.com/janpf/ctt" target="_blank"> Source Code</a>
+            <br>
+            source code <a href="https://github.com/janpf/ctt" target="_blank">here</a>, raw data below
         </div>
     </span>
     <div>
@@ -31,29 +31,42 @@
         Alternative dashboard by <a href="https://github.com/micb25" target="_blank">Michael Böhme</a> available <a
             href="https://micb25.github.io/dka/" target="_blank">here</a>
     </div>
-    <div id="validVis"></div>
+    <div id="validVis" class="left"></div>
     <script type="text/javascript">
         var spec = "./plots/valid.json";
         vegaEmbed('#validVis', spec).then(function (result) {
         }).catch(console.error);
     </script>
-    <div id="publishedVis"></div>
+    <div id="publishedVis" class="right"></div>
     <script type="text/javascript">
         var spec = "./plots/published.json";
         vegaEmbed('#publishedVis', spec).then(function (result) {
         }).catch(console.error);
     </script>
 
-    <div id="validByRiskVis"></div>
+    <div id="validByRiskVis" class="left"></div>
     <script type="text/javascript">
         var spec = "./plots/validByRisk.json";
         vegaEmbed('#validByRiskVis', spec).then(function (result) {
         }).catch(console.error);
     </script>
-    <div id="publishedByRiskVis"></div>
+    <div id="publishedByRiskVis" class="right"></div>
     <script type="text/javascript">
         var spec = "./plots/publishedByRisk.json";
         vegaEmbed('#publishedByRiskVis', spec).then(function (result) {
+        }).catch(console.error);
+    </script>
+
+    <div id="usercountVis" class="left"></div>
+    <script type="text/javascript">
+        var spec = "./plots/usercount.json";
+        vegaEmbed('#usercountVis', spec).then(function (result) {
+        }).catch(console.error);
+    </script>
+    <div id="userPublishedByCountVis" class="right"></div>
+    <script type="text/javascript">
+        var spec = "./plots/userPublishedByCount.json";
+        vegaEmbed('#userPublishedByCountVis', spec).then(function (result) {
         }).catch(console.error);
     </script>
 

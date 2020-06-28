@@ -42,12 +42,9 @@ for date in set([val["validOn"] for val in keys]):
 values = []
 valuesByRisk = []
 for date in set([val["publishedOn"] for val in keys] + [val["validOn"] for val in keys]):
-    values.append({"date": date, "published": data["overall"]["publishDate"].get(date, 0), "valid": data["overall"]["validDate"].get(date, 0)})
+    values.append({"date": date, "published": data["overall"]["publishDate"].get(date, 0), "valid": data["overall"]["validDate"].get(date, 0), "users_published": 0})
     for risk in range(risk_levels):
         valuesByRisk.append({"date": date, "published": data["byRisk"]["publishDate"].get(date, dict()).get(risk, 0), "valid": data["byRisk"]["validDate"].get(date, dict()).get(risk, 0), "risk": risk})
-
-values.sort(key=lambda x: x["date"])
-valuesByRisk.sort(key=lambda x: x["date"])
 
 if values[-1]["valid"] == 0:
     for val in valuesByRisk:
@@ -55,9 +52,44 @@ if values[-1]["valid"] == 0:
             del val["valid"]
     del values[-1]["valid"]
 
+usersByCount = []
+
+for f in Path("page/users").iterdir():
+    if f.name == ".gitkeep":
+        continue
+    print(f)
+    with open(f) as tmp:
+        last_line = tmp.readlines()[-1]
+    user_count = int(last_line.split("/")[0].strip())
+    for val in values:
+        if val["date"] == f.stem:
+            val["users_published"] = user_count
+
+    user_dist = last_line.split("/")[1].split(",")
+    if "(" in user_dist[-1]:
+        user_dist[-1] = user_dist[-1].split("(")[0]
+    user_dist = [val.strip() for val in user_dist]
+
+    for tpl in user_dist:
+        user_count, key_count = tpl.split("*")
+        user_count = int(user_count)
+        key_count = int(key_count)
+        date = dict()
+        date["date"] = f.stem
+        date["user_count"] = user_count
+        date["key_count"] = key_count
+        usersByCount.append(date)
+
+
+values.sort(key=lambda x: x["date"])
+valuesByRisk.sort(key=lambda x: x["date"])
+usersByCount.sort(key=lambda x: x["date"])
 
 with open("page/plots/data.json", "w") as f:
     json.dump(values, f, sort_keys=True)
 
 with open("page/plots/dataByRisk.json", "w") as f:
     json.dump(valuesByRisk, f, sort_keys=True)
+
+with open("page/plots/usersByCount.json", "w") as f:
+    json.dump(usersByCount, f, sort_keys=True)
