@@ -10,16 +10,14 @@ body {
     grid-gap: 30px;
 }
 
-.vega-embed {
-    align-self: stretch;
-}
-
 .left{
   grid-column: 1;
+  align-self: stretch;
 }
 
 .right{
   grid-column: 2;
+  align-self: stretch;
 }
 
 .heading {
