@@ -112,16 +112,16 @@
                 "type": "text",
                 "stroke": "white",
                 "strokeWidth": 2,
-                "align": "left",
-                "dx": 5,
+                "align": "right",
+                "dx": -5,
                 "dy": -5
               }
             },
             {
               "mark": {
                 "type": "text",
-                "align": "left",
-                "dx": 5,
+                "align": "right",
+                "dx": -5,
                 "dy": -5
               },
               "encoding": {
