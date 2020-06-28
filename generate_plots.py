@@ -46,6 +46,16 @@ for date in set([val["publishedOn"] for val in keys] + [val["validOn"] for val i
     for risk in range(risk_levels):
         valuesByRisk.append({"date": date, "published": data["byRisk"]["publishDate"].get(date, dict()).get(risk, 0), "valid": data["byRisk"]["validDate"].get(date, dict()).get(risk, 0), "risk": risk})
 
+values.sort(key=lambda x: x["date"])
+valuesByRisk.sort(key=lambda x: x["date"])
+
+if values[-1]["valid"] == 0:
+    for val in valuesByRisk:
+        if val["date"] == values[-1]["date"]:
+            del val["valid"]
+    del values[-1]["valid"]
+
+
 with open("page/plots/data.json", "w") as f:
     json.dump(values, f, sort_keys=True)
 
