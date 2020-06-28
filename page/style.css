@@ -26,17 +26,16 @@ body {
     grid-column: 2;
     align-self: stretch;
 }
-/*
-#files{
-    grid-column: 1/3;
-    align-self: stretch;
+
+.heading {
+  grid-column: 1;
+  grid-row: 1;
 }
-*/
 
 
 .tabs {
     position: relative;
-    min-height: 200px; /* This part sucks */
+    min-height: 200px;
     clear: both;
     margin: 25px 0;
     grid-column: 1/3;
