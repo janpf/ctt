@@ -12,12 +12,10 @@ body {
 
 .left{
   grid-column: 1;
-  align-self: stretch;
 }
 
 .right{
   grid-column: 2;
-  align-self: stretch;
 }
 
 .heading {

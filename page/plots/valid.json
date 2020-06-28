@@ -1,8 +1,12 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
     "title": "number of keys valid per day",
-    "width": "container",
+    "width": 500,
     "height": 250,
+    "autosize": {
+        "resize": true,
+        "contains": "padding"
+    },
     "data": {
         "url": "./plots/data.json"
     },
