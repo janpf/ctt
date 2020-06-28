@@ -86,6 +86,11 @@ if values[-1]["valid"] == 0:
             del val["valid"]
     del values[-1]["valid"]
 
+for date in usersByCount:
+    s = sum([(val["user_count"] * val["key_count"]) for val in usersByCount if val["date"] == date["date"]])
+    if s > 0:
+        date["average_key_count_per_user"] = s / [val for val in values if val["date"] == date["date"]][0]["users_published"]
+
 for val in values:
     if val["date"] not in [v["date"] for v in usersByCount]:
         filler = dict()

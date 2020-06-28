@@ -71,8 +71,7 @@
           "type": "temporal"
         },
         "y": {
-          "aggregate": "average",
-          "field": "key_count",
+          "field": "average_key_count_per_user",
           "type": "quantitative"
         }
       }
