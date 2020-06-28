@@ -8,6 +8,5 @@ print(available_dates)
 with open("page/index.html") as f:
     template = Template(f.read())
 
-
 with open("page/index.html", "w") as f:  # disaster waiting to happen
     f.write(template.render(dates=available_dates))

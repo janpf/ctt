@@ -1,5 +1,7 @@
-json
-keys
-plaintext
-data.json
-dataByRisk.json
+page/plots/data.json
+page/plots/dataByRisk.json
+
+page/json
+page/keys
+page/plaintext
+page/users
