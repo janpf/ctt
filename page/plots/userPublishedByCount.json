@@ -25,11 +25,11 @@
           }
         },
         "y": {
-          "field": "user_count",
+          "field": "key_count",
           "type": "quantitative"
         },
         "color": {
-          "field": "key_count",
+          "field": "user_count",
           "type": "quantitative"
         }
       },
@@ -61,6 +61,21 @@
           }
         }
       ]
+    },
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "timeUnit": "utcmonthdate",
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {
+          "aggregate": "average",
+          "field": "key_count",
+          "type": "quantitative"
+        }
+      }
     },
     {
       "transform": [
@@ -103,7 +118,7 @@
             },
             "y": {
               "type": "quantitative",
-              "field": "user_count"
+              "field": "key_count"
             }
           },
           "layer": [
@@ -127,7 +142,7 @@
               "encoding": {
                 "color": {
                   "type": "quantitative",
-                  "field": "key_count"
+                  "field": "user_count"
                 }
               }
             }
