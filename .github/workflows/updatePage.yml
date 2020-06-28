@@ -48,6 +48,10 @@ jobs:
         working-directory: main
         run: bash create_plaintext.sh
 
+      - name: generate users files
+        working-directory: main
+        run: bash create_users.sh
+
       - name: generate plots
         working-directory: main
         run: python generate_plots.py

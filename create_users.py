@@ -18,5 +18,5 @@ dk = DiagnosisKeys(dk_file_name)
 
 dk_list = [DiagnosisKey(tek.key_data, tek.rolling_start_interval_number, tek.rolling_period, tek.transmission_risk_level) for tek in dk.get_keys()]
 
-print("approximated user count:")
+print("approximated user count according to https://github.com/corona-warn-app/cwa-documentation/issues/258#issuecomment-650700745")
 count_users(dk_list)
