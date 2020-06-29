@@ -6,7 +6,10 @@
     "data": {
         "url": "./plots/data.json"
     },
-    "mark": "line",
+    "mark": {
+        "type": "line",
+        "point": true
+    },
     "encoding": {
         "x": {
             "timeUnit": "utcmonthdate",
