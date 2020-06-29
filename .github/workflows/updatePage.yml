@@ -52,9 +52,9 @@ jobs:
         working-directory: main
         run: bash create_users.sh
 
-      - name: generate plots
+      - name: generate data for plots
         working-directory: main
-        run: python generate_plots.py
+        run: python generate_data.py
 
       - name: generate html
         working-directory: main
