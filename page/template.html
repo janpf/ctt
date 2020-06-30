@@ -107,6 +107,13 @@
                             <object id="json{{ date }}" type="text/json" height="100%" width="100%"></object>
                         </div>
                     </div>
+                    <div class="tab">
+                        <input type="radio" id="{{ date }}-zip" name="{{ date }}-group-nested">
+                        <label for="{{ date }}-zip">raw binary</label>
+                        <div class="content">
+                            <a href="/keys/{{ date }}.zip" target="_blank">download</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             {% endfor %}
