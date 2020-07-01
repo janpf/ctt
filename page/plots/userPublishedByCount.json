@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": "number of keys published per user per day (approx.)",
+  "title": "number of keys published per user per day (approx.) (interactive)",
   "width": 550,
   "height": 250,
   "data": {
@@ -26,7 +26,13 @@
         },
         "y": {
           "field": "key_count",
-          "type": "quantitative"
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              14
+            ]
+          }
         },
         "color": {
           "field": "user_count",
