@@ -60,29 +60,23 @@ jobs:
         working-directory: main
         run: python generate_html.py
 
-#      - name: install puppeteer
-#        uses: mujo-code/puppeteer-headful@master
-#        env:
-#          CI: 'true'
+      - name: install puppeteer
+        uses: mujo-code/puppeteer-headful@master
+        env:
+          CI: 'true'
 
-#      - name: take screenshot
-#        uses: flameddd/screenshots-ci-action@v1.0.4
-#        with:
-#          url: "https://ctt.pfstr.de/"
-
-      - name: debug
-        run: echo $(pwd)
-
-      - name: debug
-        run: echo $(ls -l)
+      - name: take screenshot
+        uses: flameddd/screenshots-ci-action@v1.0.4
+        with:
+          url: "https://ctt.pfstr.de/"
 
       - name: copy screenshot
-        run: cp screenshots/desktopPage1920x1080*.png ./page/Screenshot.png
+        run: cp screenshots/desktopPage1920x1080*.png main/page/Screenshot.png
 
-#      - name: publish
-#        uses: netlify/actions/cli@master
-#        with:
-#          args: deploy --dir=main/page --prod
-#        env:
-#          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-#          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      - name: publish
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=main/page --prod
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
