@@ -1,28 +1,71 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "title": "number of keys published per day",
+    "title": "number of keys published",
     "width": 550,
     "height": 250,
     "data": {
         "url": "./plots/data.json"
     },
-    "mark": {
-        "type": "line",
-        "point": true
-    },
-    "encoding": {
-        "x": {
-            "timeUnit": "utcmonthdate",
-            "field": "date",
-            "type": "temporal",
-            "axis": {
-                "labelAngle": 0,
-                "tickCount": "day"
+    "transform": [
+        {
+            "window": [
+                {
+                    "op": "sum",
+                    "field": "published",
+                    "as": "sum_published"
+                }
+            ]
+        }
+    ],
+    "layer": [
+        {
+            "mark": {
+                "type": "bar"
+            },
+            "encoding": {
+                "x": {
+                    "timeUnit": "utcmonthdate",
+                    "field": "date",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "published",
+                    "type": "quantitative",
+                    "axis": {
+                        "title": "published keys per day",
+                        "titleColor": "blue"
+                    }
+                }
             }
         },
-        "y": {
-            "field": "published",
-            "type": "quantitative"
+        {
+            "mark": {
+                "type": "line",
+                "point": {
+                    "color": "red"
+                },
+                "color": "red"
+            },
+            "encoding": {
+                "x": {
+                    "timeUnit": "utcmonthdate",
+                    "field": "date",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "sum_published",
+                    "type": "quantitative",
+                    "axis": {
+                        "title": "running sum of keys published",
+                        "titleColor": "red"
+                    }
+                }
+            }
+        }
+    ],
+    "resolve": {
+        "scale": {
+            "y": "independent"
         }
     }
 }

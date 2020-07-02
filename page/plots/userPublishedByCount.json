@@ -32,6 +32,9 @@
               0,
               14
             ]
+          },
+          "axis": {
+            "title": "(average) key count per user on given day"
           }
         },
         "color": {

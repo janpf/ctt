@@ -22,7 +22,10 @@
         },
         "y": {
             "field": "valid",
-            "type": "quantitative"
+            "type": "quantitative",
+            "axis": {
+                "title": "keys valid per day"
+            }
         }
     }
 }
