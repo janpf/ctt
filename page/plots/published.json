@@ -63,7 +63,7 @@
                     "type": "quantitative",
                     "axis": {
                         "title": "running sum of keys published",
-                        "titleColor": "red"
+                        "titleColor": "#b4464b"
                     }
                 },
                 "text": {
@@ -76,18 +76,18 @@
                     "mark": {
                         "type": "line",
                         "point": {
-                            "color": "red"
+                            "color": "#b4464b"
                         },
-                        "color": "red"
+                        "color": "#b4464b"
                     }
                 },
                 {
                     "mark": {
                         "type": "text",
-                        "stroke": "red",
+                        "stroke": "#b4464b",
                         "align": "right",
-                        "dx": -1,
-                        "dy": -1
+                        "dx": -2,
+                        "dy": -2
                     }
                 }
             ]
