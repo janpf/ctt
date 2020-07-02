@@ -70,8 +70,14 @@ jobs:
         with:
           url: "https://ctt.pfstr.de/"
 
+      - name: debug
+        run: pwd
+
+      - name: debug
+        run: ls
+
       - name: copy screenshot
-        run: cp screenshots/desktopPage1920x1080*.png page/Screenshot.png
+        run: cp screenshots/desktopPage1920x1080*.png ./page/Screenshot.png
 
       - name: publish
         uses: netlify/actions/cli@master
