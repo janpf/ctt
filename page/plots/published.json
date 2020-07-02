@@ -19,9 +19,6 @@
     ],
     "layer": [
         {
-            "mark": {
-                "type": "bar"
-            },
             "encoding": {
                 "x": {
                     "timeUnit": "utcmonthdate",
@@ -33,19 +30,28 @@
                     "type": "quantitative",
                     "axis": {
                         "title": "published keys per day",
-                        "titleColor": "blue"
+                        "titleColor": "steelblue"
+                    }
+                },
+                "text": {
+                    "field": "published",
+                    "type": "quantitative"
+                }
+            },
+            "layer": [
+                {
+                    "mark": "bar"
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "color": "white",
+                        "dy": 10
                     }
                 }
-            }
+            ]
         },
         {
-            "mark": {
-                "type": "line",
-                "point": {
-                    "color": "red"
-                },
-                "color": "red"
-            },
             "encoding": {
                 "x": {
                     "timeUnit": "utcmonthdate",
@@ -59,8 +65,32 @@
                         "title": "running sum of keys published",
                         "titleColor": "red"
                     }
+                },
+                "text": {
+                    "field": "sum_published",
+                    "type": "quantitative"
                 }
-            }
+            },
+            "layer": [
+                {
+                    "mark": {
+                        "type": "line",
+                        "point": {
+                            "color": "red"
+                        },
+                        "color": "red"
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "stroke": "red",
+                        "align": "right",
+                        "dx": -1,
+                        "dy": -1
+                    }
+                }
+            ]
         }
     ],
     "resolve": {
