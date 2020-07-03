@@ -12,8 +12,6 @@ data["overall"]["validDate"] = defaultdict(int)
 data["byRisk"] = dict()
 data["byRisk"]["publishDate"] = dict()
 data["byRisk"]["validDate"] = dict()
-for valDate in set([val["validOn"] for val in keys]):
-    data["byRisk"]["validDate"][valDate] = defaultdict(int)
 
 multiplier = dict()
 for f in Path("page/users").iterdir():
@@ -44,6 +42,9 @@ for f in sorted(Path("page/json").iterdir()):
         k["validOn"] = dk["validity"]["start"].split(" ")[0]
         k["transmissionRiskLevel"] = dk["transmissionRiskLevel"]
         keys.append(k)
+
+for valDate in set([val["validOn"] for val in keys]):
+    data["byRisk"]["validDate"][valDate] = defaultdict(int)
 
 for date in set([val["publishedOn"] for val in keys]):
     publishedOnDay = [val for val in keys if val["publishedOn"] == date]
