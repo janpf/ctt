@@ -66,15 +66,11 @@ for date in set([val["publishedOn"] for val in keys]):
 values = []
 valuesByRisk = []
 for date in set([val["publishedOn"] for val in keys] + [val["validOn"] for val in keys]):
-    values.append({"date": date, "published": data["overall"]["publishDate"].get(date, 0), "valid": data["overall"]["validDate"].get(date, 0), "users_published": 0})
+    values.append({"date": date, "published": data["overall"]["publishDate"].get(date, 0), "users_published": round(sum([1 / k["multiplier"] for k in keys if k["publishedOn"] == date and k["transmissionRiskLevel"] == 6])), "valid": data["overall"]["validDate"].get(date, 0)})
     for risk in range(risk_levels):
         valuesByRisk.append({"date": date, "published": data["byRisk"]["publishDate"].get(date, dict()).get(risk, 0), "valid": data["byRisk"]["validDate"].get(date, dict()).get(risk, 0), "risk": risk})
 
 usersByCount = []
-
-for val in values:
-    val["users_published"] = int(sum([1 / k["multiplier"] for k in keys if k["publishedOn"] == val["date"] and k["transmissionRiskLevel"] == 6]))
-
 for f in sorted(Path("page/users_hourly").iterdir()):
     if f.name == ".gitkeep":
         continue
