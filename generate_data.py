@@ -14,7 +14,7 @@ data["byRisk"]["publishDate"] = dict()
 data["byRisk"]["validDate"] = dict()
 
 multiplier = dict()
-for f in Path("page/users").iterdir():
+for f in Path("page/users_hourly").iterdir():
     if f.name == ".gitkeep":
         continue
     with open(f) as tmp:
@@ -22,12 +22,13 @@ for f in Path("page/users").iterdir():
 
     for line in lines:
         if "Padding" in line:
-            multiplier[f.stem] = int(line.split(":")[-1])
+            multiplierForPacket = int(line.split(":")[-1])
 
-    if not f.stem in multiplier:
-        multiplier[f.stem] = 10
+    with open(f"page/json_hourly/{f.stem}.json") as f:
+        hourly_packet = json.load(f)
 
-print("Paddings found:", sorted(multiplier.items()))
+    for key in hourly_packet["diagnosisKeys"]:
+        multiplier[key["TemporaryExposureKey"]] = multiplierForPacket
 
 risk_levels = 9
 
@@ -41,7 +42,7 @@ for f in sorted(Path("page/json").iterdir()):
         k["publishedOn"] = jf["timeWindowStart"].split(" ")[0]
         k["validOn"] = dk["validity"]["start"].split(" ")[0]
         k["transmissionRiskLevel"] = dk["transmissionRiskLevel"]
-        k["multiplier"] = multiplier[k["publishedOn"]]
+        k["multiplier"] = multiplier.get(dk["TemporaryExposureKey"], 10)
         keys.append(k)
 
 for valDate in set([val["validOn"] for val in keys]):
