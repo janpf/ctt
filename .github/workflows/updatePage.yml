@@ -72,6 +72,15 @@ jobs:
         working-directory: main
         run: python generate_html.py
 
+      - name: cleanup json hourly
+        run: rm -rf main/page/json_hourly
+
+      - name: cleanup keys hourly
+        run: rm -rf main/page/keys_hourly
+
+      - name: cleanup users hourly
+        run: rm -rf main/page/users_hourly
+
       - name: install puppeteer
         uses: mujo-code/puppeteer-headful@master
         env:
@@ -82,10 +91,18 @@ jobs:
         with:
           url: "https://ctt.pfstr.de/"
 
+      - name: publish
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=main/page --prod
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
       - name: copy screenshot
         run: cp screenshots/desktopPage1920x1080*.png main/page/Screenshot.png
 
-      - name: publish
+      - name: update screenshot
         uses: netlify/actions/cli@master
         with:
           args: deploy --dir=main/page --prod

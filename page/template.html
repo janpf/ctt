@@ -75,53 +75,15 @@
         }).catch(console.error);
     </script>
 
-    <div class="tabs">
+    <table>
         {% for date in dates %}
-        <div class="tab">
-            <input type="radio" id="{{ date }}" name="date-group" checked>
-            <label for="{{ date }}">{{ date }}</label>
-            <div class="content">
-                <div class="tabs">
-                    <div class="tab">
-                        <input type="radio" id="{{ date }}-txt" name="{{ date }}-group-nested" checked>
-                        <label for="{{ date }}-txt">plaintext</label>
-                        <div class="content">
-                            <a href="/plaintext/{{ date }}.txt" target="_blank">download</a>
-                            <button
-                                onClick="document.getElementById('plaintext{{ date }}').setAttribute('data', '/plaintext/{{ date }}.txt')">display</button>
-                            <object id="plaintext{{ date }}" type="text/plain" height="100%" width="100%"></object>
-                        </div>
-                    </div>
-                    <div class="tab">
-                        <input type="radio" id="{{ date }}-users" name="{{ date }}-group-nested">
-                        <label for="{{ date }}-users">approx. users</label>
-                        <div class="content">
-                            <a href="/users/{{ date }}.txt" target="_blank">download</a>
-                            <button
-                                onClick="document.getElementById('users{{ date }}').setAttribute('data', '/users/{{ date }}.txt')">display</button>
-                            <object id="users{{ date }}" type="text/plain" height="100%" width="100%"></object>
-                        </div>
-                    </div>
-                    <div class="tab">
-                        <input type="radio" id="{{ date }}-json" name="{{ date }}-group-nested">
-                        <label for="{{ date }}-json">json</label>
-                        <div class="content">
-                            <a href="/json/{{ date }}.json" target="_blank">download</a>
-                            <button
-                                onClick="document.getElementById('json{{ date }}').setAttribute('data', '/json/{{ date }}.json')">display</button>
-                            <object id="json{{ date }}" type="text/json" height="100%" width="100%"></object>
-                        </div>
-                    </div>
-                    <div class="tab">
-                        <input type="radio" id="{{ date }}-zip" name="{{ date }}-group-nested">
-                        <label for="{{ date }}-zip">raw binary</label>
-                        <div class="content">
-                            <a href="/keys/{{ date }}.zip" target="_blank">download</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
+        <tr>
+            <td>{{ date }}</td>
+            <td><a href="/plaintext/{{ date }}.txt" target="_blank">plaintext</a></td>
+            <td><a href="/users/{{ date }}.txt" target="_blank">approx. users</a></td>
+            <td><a href="/json/{{ date }}.json" target="_blank">json</a></td>
+            <td> <a href="/keys/{{ date }}.zip" target="_blank">raw binary</a></td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
