@@ -41,6 +41,7 @@ for f in sorted(Path("page/json").iterdir()):
         k["publishedOn"] = jf["timeWindowStart"].split(" ")[0]
         k["validOn"] = dk["validity"]["start"].split(" ")[0]
         k["transmissionRiskLevel"] = dk["transmissionRiskLevel"]
+        k["multiplier"] = multiplier[k["publishedOn"]]
         keys.append(k)
 
 for valDate in set([val["validOn"] for val in keys]):
@@ -48,16 +49,16 @@ for valDate in set([val["validOn"] for val in keys]):
 
 for date in set([val["publishedOn"] for val in keys]):
     publishedOnDay = [val for val in keys if val["publishedOn"] == date]
-    data["overall"]["publishDate"][date] = int(len(publishedOnDay) / multiplier[date])
+    data["overall"]["publishDate"][date] = round(sum([1 / val["multiplier"] for val in publishedOnDay]))
     data["byRisk"]["publishDate"][date] = dict()
     for risk in range(20):
-        data["byRisk"]["publishDate"][date][risk] = int(len([val for val in publishedOnDay if val["transmissionRiskLevel"] == risk]) / multiplier[date])
+        data["byRisk"]["publishDate"][date][risk] = round(sum([1 / val["multiplier"] for val in publishedOnDay if val["transmissionRiskLevel"] == risk]))
 
     for valDate in set([val["validOn"] for val in keys]):
         validOnDay = [val for val in publishedOnDay if val["validOn"] == valDate]
-        data["overall"]["validDate"][valDate] += int(len(validOnDay) / multiplier[date])
+        data["overall"]["validDate"][valDate] += round(sum([1 / val["multiplier"] for val in validOnDay]))
         for risk in range(risk_levels):
-            data["byRisk"]["validDate"][valDate][risk] += int(len([val for val in validOnDay if val["transmissionRiskLevel"] == risk]) / multiplier[date])
+            data["byRisk"]["validDate"][valDate][risk] += round(sum([1 / val["multiplier"] for val in validOnDay if val["transmissionRiskLevel"] == risk]))
 
 
 values = []
