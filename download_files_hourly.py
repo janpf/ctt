@@ -11,8 +11,10 @@ available_dates = requests.get(dates_url).json()
 print(f"available dates: {available_dates}")
 
 for date in available_dates:
-    print(f"downloading file for {date}")
-    file_url = f"{dates_url}/{date}"
-    r = requests.get(file_url)
-    with open(f"page/keys/{date}.zip", "wb") as f:
-        f.write(r.content)
+    hours_url = f"{dates_url}/{date}/hour"
+    available_hours = requests.get(hours_url).json()
+
+    print(f"hourly available keys on {date}: {available_hours}")
+    for hour in available_hours:
+        with open(f"page/keys_hourly/{date}-{hour}.zip", "wb") as f:
+            f.write(requests.get(f"{hours_url}/{hour}").content)
