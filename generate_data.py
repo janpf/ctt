@@ -1,16 +1,35 @@
 import json
 from pathlib import Path
+from collections import defaultdict
 
 keys = []
 
 data = dict()
 data["overall"] = dict()
 data["overall"]["publishDate"] = dict()
-data["overall"]["validDate"] = dict()
+data["overall"]["validDate"] = defaultdict(int)
 
 data["byRisk"] = dict()
 data["byRisk"]["publishDate"] = dict()
 data["byRisk"]["validDate"] = dict()
+for valDate in set([val["validOn"] for val in keys]):
+    data["byRisk"]["validDate"][valDate] = defaultdict(int)
+
+multiplier = dict()
+for f in Path("page/users").iterdir():
+    if f.name == ".gitkeep":
+        continue
+    with open(f) as tmp:
+        lines = tmp.readlines()
+
+    for line in lines:
+        if "Padding" in line:
+            multiplier[f.stem] = int(line.split(":")[-1])
+
+    if not f.stem in multiplier:
+        multiplier[f.stem] = 10
+
+print("Paddings found:", sorted(multiplier.items()))
 
 risk_levels = 9
 
@@ -27,16 +46,17 @@ for f in sorted(Path("page/json").iterdir()):
         keys.append(k)
 
 for date in set([val["publishedOn"] for val in keys]):
-    data["overall"]["publishDate"][date] = int(len([val for val in keys if val["publishedOn"] == date]) / 10)
+    publishedOnDay = [val for val in keys if val["publishedOn"] == date]
+    data["overall"]["publishDate"][date] = int(len(publishedOnDay) / multiplier[date])
     data["byRisk"]["publishDate"][date] = dict()
     for risk in range(20):
-        data["byRisk"]["publishDate"][date][risk] = int(len([val for val in keys if val["publishedOn"] == date and val["transmissionRiskLevel"] == risk]) / 10)
+        data["byRisk"]["publishDate"][date][risk] = int(len([val for val in publishedOnDay if val["transmissionRiskLevel"] == risk]) / multiplier[date])
 
-for date in set([val["validOn"] for val in keys]):
-    data["overall"]["validDate"][date] = int(len([val for val in keys if val["validOn"] == date]) / 10)
-    data["byRisk"]["validDate"][date] = dict()
-    for risk in range(risk_levels):
-        data["byRisk"]["validDate"][date][risk] = int(len([val for val in keys if val["validOn"] == date and val["transmissionRiskLevel"] == risk]) / 10)
+    for valDate in set([val["validOn"] for val in keys]):
+        validOnDay = [val for val in publishedOnDay if val["validOn"] == valDate]
+        data["overall"]["validDate"][valDate] += int(len(validOnDay) / multiplier[date])
+        for risk in range(risk_levels):
+            data["byRisk"]["validDate"][valDate][risk] += int(len([val for val in validOnDay if val["transmissionRiskLevel"] == risk]) / multiplier[date])
 
 
 values = []
