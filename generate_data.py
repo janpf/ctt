@@ -1,6 +1,7 @@
+import datetime
 import json
-from pathlib import Path
 from collections import defaultdict
+from pathlib import Path
 
 keys = []
 
@@ -71,16 +72,20 @@ for date in set([val["publishedOn"] for val in keys] + [val["validOn"] for val i
 
 usersByCount = []
 
-for f in Path("page/users").iterdir():
+for f in sorted(Path("page/users_hourly").iterdir()):
     if f.name == ".gitkeep":
         continue
     print(f)
     with open(f) as tmp:
         last_line = tmp.readlines()[-1]
     user_count = int(last_line.split("/")[0].strip())
+    if datetime.datetime.fromisoformat(f.stem[: f.stem.rfind("-")]) >= datetime.datetime.fromisoformat("2020-07-02"):  # ignoring old android apps since server version 1.0.9
+        if "old Android app" in last_line:
+            to_be_ignored = int(last_line.split("(")[1].split(" ")[0])
+            user_count -= to_be_ignored
     for val in values:
-        if val["date"] == f.stem:
-            val["users_published"] = user_count
+        if val["date"] == f.stem[: f.stem.rfind("-")]:
+            val["users_published"] += user_count
 
     user_dist = last_line.split("/")[1].split(",")
     if "(" in user_dist[-1]:
@@ -91,11 +96,16 @@ for f in Path("page/users").iterdir():
         user_count, key_count = tpl.split("*")
         user_count = int(user_count)
         key_count = int(key_count)
-        date = dict()
-        date["date"] = f.stem
-        date["user_count"] = user_count
-        date["key_count"] = key_count
-        usersByCount.append(date)
+        current_date = [date for date in usersByCount if date["key_count"] == key_count and date["date"] == f.stem[: f.stem.rfind("-")]]
+        if len(current_date) == 0:
+            current_date = dict()
+            current_date["date"] = f.stem[: f.stem.rfind("-")]
+            current_date["key_count"] = key_count
+            current_date["user_count"] = 0
+            usersByCount.append(current_date)
+        else:
+            current_date = current_date[0]
+        current_date["user_count"] += user_count
 
 
 values.sort(key=lambda x: x["date"])

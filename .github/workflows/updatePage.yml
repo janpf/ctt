@@ -40,9 +40,17 @@ jobs:
         working-directory: main
         run: python download_files.py
 
+      - name: download hourly files
+        working-directory: main
+        run: python download_files_hourly.py
+
       - name: generate json files
         working-directory: main
         run: bash create_json.sh
+
+      - name: generate hourly json files
+        working-directory: main
+        run: bash create_json_hourly.sh
 
       - name: generate plaintext files
         working-directory: main
@@ -51,6 +59,10 @@ jobs:
       - name: generate users files
         working-directory: main
         run: bash create_users.sh
+
+      - name: generate hourly users files
+        working-directory: main
+        run: bash create_users_hourly.sh
 
       - name: generate data for plots
         working-directory: main
