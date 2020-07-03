@@ -72,20 +72,15 @@ for date in set([val["publishedOn"] for val in keys] + [val["validOn"] for val i
 
 usersByCount = []
 
+for val in values:
+    val["users_published"] = int(sum([1 / k["multiplier"] for k in keys if k["publishedOn"] == val["date"] and k["transmissionRiskLevel"] == 6]))
+
 for f in sorted(Path("page/users_hourly").iterdir()):
     if f.name == ".gitkeep":
         continue
     print(f)
     with open(f) as tmp:
         last_line = tmp.readlines()[-1]
-    user_count = int(last_line.split("/")[0].strip())
-    if datetime.datetime.fromisoformat(f.stem[: f.stem.rfind("-")]) >= datetime.datetime.fromisoformat("2020-07-02"):  # ignoring old android apps since server version 1.0.9
-        if "old Android app" in last_line:
-            to_be_ignored = int(last_line.split("(")[1].split(" ")[0])
-            user_count -= to_be_ignored
-    for val in values:
-        if val["date"] == f.stem[: f.stem.rfind("-")]:
-            val["users_published"] += user_count
 
     user_dist = last_line.split("/")[1].split(",")
     if "(" in user_dist[-1]:
