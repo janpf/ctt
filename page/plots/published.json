@@ -62,7 +62,7 @@
                     "field": "sum_published",
                     "type": "quantitative",
                     "axis": {
-                        "title": "running sum of keys published",
+                        "title": "running total of keys published",
                         "titleColor": "#b4464b"
                     }
                 },
