@@ -4,39 +4,39 @@ body {
 
 .container {
     margin: 2em auto;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     width: 80%;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 30px;
+}
+
+.row {
+  margin-top: 2em;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .left{
-  grid-column: 1;
+  order: 0;
+  margin: 2em;
   width: 100%;
   height: 100%;
 }
 
 .right{
-  grid-column: 2;
+  order: 1;
+  margin: 2em;
   width: 100%;
   height: 100%;
+}
+
+.graph{
+  display: flex;
+  flex-direction: column;
 }
 
 .heading {
   grid-column: 1;
   grid-row: 1;
-}
-
-.row-1 {
-  grid-row: 2;
-}
-
-.row-2 {
-  grid-row: 3;
-}
-
-.row-3 {
-  grid-row: 4;
 }
 
 .sources {

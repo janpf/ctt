@@ -12,39 +12,109 @@
 </head>
 
 <body class="container">
-    <span class="heading">
-        <h1>Corona Tracker Tracker</h1>
-        <div>always up to date:
-            <a href="https://github.com/janpf/ctt/actions" target="_blank">
-                <img style="vertical-align:middle" src="https://github.com/janpf/ctt/workflows/update%20page/badge.svg">
-            </a>
+    <span class="row">
+        <span class="graph">
+            <!-- nice graph, bro-->
+            <h1>Corona Tracker Tracker</h1>
+            <div>always up to date:
+                <a href="https://github.com/janpf/ctt/actions" target="_blank">
+                    <img style="vertical-align:middle"
+                        src="https://github.com/janpf/ctt/workflows/update%20page/badge.svg">
+                </a>
+                <br>
+                source code on <a href="https://github.com/janpf/ctt" target="_blank">github</a>; raw data below
+            </div>
+        </span>
+        <div>
             <br>
-            source code on <a href="https://github.com/janpf/ctt" target="_blank">github</a>; raw data below
+            Thanks to <a href="https://github.com/mh-" target="_blank">mh-</a> for building the <a
+                href="https://github.com/mh-/diagnosis-keys" target="_blank">parser</a>
+            <br>
+            More raw data can be found here:
+            <a href="https://cwa.malte.io/tek.csv" target="_blank">[CSV]</a>
+            <a href="https://cwa.malte.io/tek.json" target="_blank">[JSON]</a>
+            <a href="https://cwa.malte.io/tek.xlsx" target="_blank">[XLSX]</a>
+            thanks to <a href="https://twitter.com/malteaero/status/1276458483039105024" target="_blank">Malte
+                Janduda</a>
+            <br>
+            Alternative dashboard by <a href="https://github.com/micb25" target="_blank">Michael Böhme</a> available <a
+                href="https://micb25.github.io/dka/" target="_blank">here</a>
         </div>
     </span>
-    <div>
-        <br>
-        Thanks to <a href="https://github.com/mh-" target="_blank">mh-</a> for building the <a
-            href="https://github.com/mh-/diagnosis-keys" target="_blank">parser</a>
-        <br>
-        More raw data can be found here:
-        <a href="https://cwa.malte.io/tek.csv" target="_blank">[CSV]</a>
-        <a href="https://cwa.malte.io/tek.json" target="_blank">[JSON]</a>
-        <a href="https://cwa.malte.io/tek.xlsx" target="_blank">[XLSX]</a>
-        thanks to <a href="https://twitter.com/malteaero/status/1276458483039105024" target="_blank">Malte Janduda</a>
-        <br>
-        Alternative dashboard by <a href="https://github.com/micb25" target="_blank">Michael Böhme</a> available <a
-            href="https://micb25.github.io/dka/" target="_blank">here</a>
-    </div>
 
-    <div id="validVis" class="left row-1"></div>
-    <div id="publishedVis" class="right row-1"></div>
+    <span class="row">
+        <span class="left graph">
+            <div id="validVis"></div>
+            <div>
+                ↑ number of keys valid (padding <a
+                    href="https://github.com/mh-/diagnosis-keys/blob/master/lib/count_users.py#L103"
+                    target="_blank">detected</a> and removed)
+            </div>
+        </span>
+        <span class="right graph">
+            <div id="publishedVis"></div>
+            <div>
+                ↑ number of keys published (padding <a
+                    href="https://github.com/mh-/diagnosis-keys/blob/master/lib/count_users.py#L103"
+                    target="_blank">detected</a> and removed)
+            </div>
+        </span>
+    </span>
 
-    <div id="validByRiskVis" class="left row-2"></div>
-    <div id="publishedByRiskVis" class="right row-2"></div>
+    <span class="row">
+        <span class="left graph">
+            <div id="validByRiskVis"></div>
+            <div>
+                ↑ number of keys valid, split by their risk level; hover for more information (padding <a
+                    href="https://github.com/mh-/diagnosis-keys/blob/master/lib/count_users.py#L103"
+                    target="_blank">detected</a> and removed)
+            </div>
 
-    <div id="usercountVis" class="left row-3"></div>
-    <div id="userPublishedByCountVis" class="right row-3"></div>
+        </span>
+        <span class="right graph">
+            <div id="publishedByRiskVis"></div>
+            <div>
+                ↑ number of keys published, split by their risk level; hover for more information (padding <a
+                    href="https://github.com/mh-/diagnosis-keys/blob/master/lib/count_users.py#L103"
+                    target="_blank">detected</a> and removed)
+            </div>
+        </span>
+    </span>
+
+    <span class="row">
+        <span class="left graph">
+            <div id="usercountVis"></div>
+            <div>
+                ↑ number of users publishing keys;
+                <a href="https://github.com/mh-/diagnosis-keys/blob/master/doc/algorithm.md#counting-users"
+                    target="_blank">
+                    close estimate
+                </a>
+                until
+                <a href="https://github.com/corona-warn-app/cwa-documentation/issues/343" target="_blank">
+                    #343
+                </a>
+                fixed
+            </div>
+        </span>
+        <span class="right graph">
+            <div id="userPublishedByCountVis"></div>
+            <div>
+                ↑ number of keys published per user;
+                <a href="https://github.com/mh-/diagnosis-keys/blob/master/doc/algorithm.md#counting-keys-per-user"
+                    target="_blank">
+                    pretty close estimate
+                </a>
+                until
+                <a href="https://github.com/corona-warn-app/cwa-documentation/issues/343" target="_blank">
+                    #343
+                </a>
+                fixed; hover for more information (padding <a
+                    href="https://github.com/mh-/diagnosis-keys/blob/master/lib/count_users.py#L103"
+                    target="_blank">detected</a> and removed)
+            </div>
+        </span>
+    </span>
 
     <script type="text/javascript">
         var spec = "./plots/valid.json";
