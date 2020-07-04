@@ -15,6 +15,14 @@ body {
   justify-content: space-evenly;
 }
 
+/* normal desktop styles */
+@media only screen  and (max-device-width: 1000px) and (orientation: portrait) {
+  .row{
+    flex-direction: column;
+  }
+}
+
+
 .left{
   order: 0;
   margin: 2em;
