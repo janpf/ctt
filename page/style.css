@@ -26,3 +26,21 @@ body {
   grid-column: 1;
   grid-row: 1;
 }
+
+.row-1 {
+  grid-row: 2;
+}
+
+.row-2 {
+  grid-row: 3;
+}
+
+.row-3 {
+  grid-row: 4;
+}
+
+.sources {
+  grid-row: 5;
+  grid-column: 1/3;
+  width: 100%;
+}
