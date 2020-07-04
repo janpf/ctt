@@ -44,6 +44,10 @@ jobs:
         working-directory: main
         run: python download_files_hourly.py
 
+      - name: generate bash files
+        working-directory: main
+        run: python generate_bash.py
+
       - name: generate json files
         working-directory: main
         run: bash create_json.sh
@@ -73,6 +77,7 @@ jobs:
         run: python generate_html.py
 
       - name: cleanup json hourly
+        working-directory: main
         run: bash cleanup_before_publication.sh
 
       - name: install puppeteer

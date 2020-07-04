@@ -75,6 +75,7 @@
                 {
                     "mark": {
                         "type": "line",
+                        "interpolate": "monotone",
                         "point": {
                             "color": "#b4464b"
                         },

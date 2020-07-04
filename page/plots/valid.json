@@ -8,6 +8,7 @@
     },
     "mark": {
         "type": "line",
+        "interpolate": "monotone",
         "point": true
     },
     "encoding": {
