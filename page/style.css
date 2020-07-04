@@ -15,8 +15,7 @@ body {
   justify-content: space-evenly;
 }
 
-/* normal desktop styles */
-@media only screen  and (max-device-width: 1000px) and (orientation: portrait) {
+@media only screen and (max-device-width: 1100px){
   .row{
     flex-direction: column;
   }
