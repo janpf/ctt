@@ -32,7 +32,7 @@ for f in Path("page/users_hourly").iterdir():
 
 risk_levels = 9
 
-for f in sorted(Path("page/json").iterdir()):
+for f in sorted(Path("page/json_hourly").iterdir()):
     if f.name == ".gitkeep":
         continue
     print(f)
