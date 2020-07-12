@@ -12,6 +12,7 @@ from pathlib import Path
 parser = argparse.ArgumentParser(description="Exposure Notification Diagnosis Key Parser.", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("-d", "--diagnosiskeys", type=str, default="testExport-2-records-1-of-1.zip", help="file name of the Diagnosis Keys .zip file")
 parser.add_argument("-n", "--new-android-apps-only", action="store_true", help="assume that no 'old' Android apps uploaded keys")
+parser.add_argument("-m", "--multiplier", type=int, default=10, help="padding multiplier (RANDOM_KEY_PADDING_MULTIPLIER as set on cwa-server)")
 args = parser.parse_args()
 
 dk_file_name = args.diagnosiskeys
@@ -24,4 +25,4 @@ print("approximated user count according to https://github.com/corona-warn-app/c
 if Path(dk_file_name).stem == "2020-06-23":
     count_users(dk_list, multiplier=10, new_android_apps_only=args.new_android_apps_only)
 else:
-    count_users(dk_list, auto_multiplier_detect=True, new_android_apps_only=args.new_android_apps_only)
+    count_users(dk_list, auto_multiplier_detect=True, multiplier=args.multipier, new_android_apps_only=args.new_android_apps_only)
