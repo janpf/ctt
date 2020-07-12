@@ -25,4 +25,4 @@ print("approximated user count according to https://github.com/corona-warn-app/c
 if Path(dk_file_name).stem == "2020-06-23":
     count_users(dk_list, multiplier=10, new_android_apps_only=args.new_android_apps_only)
 else:
-    count_users(dk_list, auto_multiplier_detect=True, multiplier=args.multipier, new_android_apps_only=args.new_android_apps_only)
+    count_users(dk_list, auto_multiplier_detect=True, multiplier=args.multiplier, new_android_apps_only=args.new_android_apps_only)
