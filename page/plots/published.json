@@ -46,7 +46,11 @@
                     "mark": {
                         "type": "text",
                         "color": "white",
-                        "dy": 10
+                        "align": "left",
+                        "baseline": "middle",
+                        "angle": 90,
+                        "dx": 1,
+                        "dy": 1
                     }
                 }
             ]
@@ -87,8 +91,9 @@
                         "type": "text",
                         "stroke": "#b4464b",
                         "align": "right",
-                        "dx": -2,
-                        "dy": -2
+                        "dx": -3,
+                        "dy": 2,
+                        "angle": 45
                     }
                 }
             ]
