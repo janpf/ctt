@@ -76,8 +76,11 @@ for f in sorted(Path("page/users_hourly").iterdir()):
     print(f)
     with open(f) as tmp:
         last_line = tmp.readlines()[-1]
+    try:
+        user_dist = last_line.split("/")[1].split(",")
+    except:
+        continue
 
-    user_dist = last_line.split("/")[1].split(",")
     if "(" in user_dist[-1]:
         user_dist[-1] = user_dist[-1].split("(")[0]
     user_dist = [val.strip() for val in user_dist]
