@@ -91,7 +91,7 @@ jobs:
           url: "https://ctt.pfstr.de/"
 
       - name: copy screenshot
-        run: cp screenshots/desktopPage1920x1080*.png main/page/Screenshot.png
+        run: cp screenshots/desktopPage1280x720*.png main/page/Screenshot.png
 
       - name: publish
         uses: netlify/actions/cli@master
