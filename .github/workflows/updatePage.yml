@@ -86,7 +86,7 @@ jobs:
           CI: 'true'
 
       - name: take screenshot
-        uses: flameddd/screenshots-ci-action@v1.0.4
+        uses: flameddd/screenshots-ci-action@v1.1.0
         with:
           url: "https://ctt.pfstr.de/"
 
