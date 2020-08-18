@@ -89,9 +89,10 @@ jobs:
         uses: flameddd/screenshots-ci-action@v1.1.0
         with:
           url: "https://ctt.pfstr.de/"
+          type: "png"
 
       - name: copy screenshot
-        run: cp screenshots/desktopPage1280x720*.png main/page/Screenshot.png
+        run: cp screenshots/desktopPage1280x720*.jpeg main/page/Screenshot.jpeg
 
       - name: publish
         uses: netlify/actions/cli@master
