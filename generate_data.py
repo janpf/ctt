@@ -21,16 +21,27 @@ for f in sorted(Path("page/users_hourly").iterdir()):
         lines = tmp.readlines()
 
     multiplierForPacket = -1
+    empty = False
     for line in lines:
+        if "called with" in line:
+            multiplierForPacket = int(line.split(":")[1].split(",")[0].split("=")[1])
         if "Padding" in line:
             multiplierForPacket = int(line.split(":")[-1])
-            print(f"{f}:\tm({multiplierForPacket})")
+        if "not padded" in line:
+            multiplierForPacket = int(line.replace("!", "").split(" ")[-1])
+        if "Length: 0 keys" in line:
+            empty = True
             break
+
+    if empty:
+        continue
 
     if multiplierForPacket == -1:
         multiplierForPacket = 10
     elif multiplierForPacket == 1:  # FIXME when it actually becomes 1
         multiplierForPacket = 5
+
+    print(f"{f}:\tm({multiplierForPacket})")
 
     with open(f"page/json_hourly/{f.stem}.json") as f:
         hourly_packet = json.load(f)
