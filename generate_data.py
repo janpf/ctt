@@ -38,8 +38,6 @@ for f in sorted(Path("page/users_hourly").iterdir()):
 
     if multiplierForPacket == -1:
         multiplierForPacket = 10
-    elif multiplierForPacket == 1:  # FIXME when it actually becomes 1
-        multiplierForPacket = 5
 
     print(f"{f}:\tm({multiplierForPacket})")
 
