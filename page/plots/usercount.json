@@ -87,16 +87,6 @@
                         },
                         "color": "#b4464b"
                     }
-                },
-                {
-                    "mark": {
-                        "type": "text",
-                        "stroke": "#b4464b",
-                        "align": "right",
-                        "dx": -3,
-                        "dy": 2,
-                        "angle": 45
-                    }
                 }
             ]
         }
