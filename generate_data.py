@@ -14,15 +14,23 @@ data["byRisk"]["publishDate"] = dict()
 data["byRisk"]["validDate"] = dict()
 
 multiplier = dict()
-for f in Path("page/users_hourly").iterdir():
+for f in sorted(Path("page/users_hourly").iterdir()):
     if f.name == ".gitkeep":
         continue
     with open(f) as tmp:
         lines = tmp.readlines()
 
+    multiplierForPacket = -1
     for line in lines:
         if "Padding" in line:
             multiplierForPacket = int(line.split(":")[-1])
+            print(f"{f}:\tm({multiplierForPacket})")
+            break
+
+    if multiplierForPacket == -1:
+        multiplierForPacket = 10
+    elif multiplierForPacket == 1:  # FIXME when it actually becomes 1
+        multiplierForPacket = 5
 
     with open(f"page/json_hourly/{f.stem}.json") as f:
         hourly_packet = json.load(f)
