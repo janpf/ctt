@@ -76,6 +76,10 @@ jobs:
         working-directory: main
         run: python generate_html.py
 
+      - name: generate filehashes
+        working-directory: main
+        run: python generate_filehashes.py
+
       - name: cleanup before publication
         working-directory: main
         run: bash cleanup_before_publication.sh
