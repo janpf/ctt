@@ -154,7 +154,16 @@
               "encoding": {
                 "color": {
                   "type": "quantitative",
-                  "field": "user_count"
+                  "field": "user_count",
+                  "scale": {
+                    "scheme": {
+                      "name": "blues",
+                      "extent": [
+                        0.25,
+                        1
+                      ]
+                    }
+                  }
                 }
               }
             }
