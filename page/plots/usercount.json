@@ -47,11 +47,12 @@
                 {
                     "mark": {
                         "type": "text",
-                        "color": "white",
-                        "align": "left",
+                        "color": "steelblue",
+                        "align": "right",
                         "baseline": "middle",
+                        "fontSize": 9,
                         "angle": 90,
-                        "dx": 1,
+                        "dx": -1,
                         "dy": 1
                     }
                 }
