@@ -54,6 +54,7 @@ with open("create_users_hourly.sh", "w") as cb:
             "2020-09-15-11",
             "2020-09-15-9",
             "2020-09-18-14",
+            "2020-09-23-19",
             "2020-09-24-19",
         ]:
             cb.write(f"echo parsing {f}; python ./create_users.py -n -m 5 -d {f} > page/users_hourly/{f.stem}.txt &\n")
