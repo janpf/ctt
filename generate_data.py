@@ -103,7 +103,10 @@ for f in sorted(Path("page/users_hourly").iterdir()):
     user_dist = [val.strip() for val in user_dist]
 
     for tpl in user_dist:
-        user_count, key_count = tpl.split("*")
+        try:
+            user_count, key_count = tpl.split("*")
+        except:
+            continue
         user_count = int(user_count)
         key_count = int(key_count)
         current_date = [date for date in usersByCount if date["key_count"] == key_count and date["date"] == f.stem[: f.stem.rfind("-")]]
