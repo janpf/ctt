@@ -21,7 +21,36 @@
           "type": "temporal",
           "axis": {
             "labelAngle": 0,
-            "tickCount": "day"
+            "tickCount": "week",
+            "labelExpr": "[timeFormat(datum.value, '%d'), timeFormat(datum.value, '%d') <= '07' ? timeFormat(datum.value, '%b') : '']",
+            "gridDash": {
+              "condition": {
+                "test": {
+                  "field": "value",
+                  "timeUnit": "day",
+                  "equal": 1
+                },
+                "value": []
+              },
+              "value": [
+                2,
+                2
+              ]
+            },
+            "tickDash": {
+              "condition": {
+                "test": {
+                  "field": "value",
+                  "timeUnit": "day",
+                  "equal": 1
+                },
+                "value": []
+              },
+              "value": [
+                2,
+                2
+              ]
+            }
           }
         },
         "y": {

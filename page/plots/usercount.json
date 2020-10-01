@@ -23,7 +23,7 @@
                 "x": {
                     "timeUnit": "utcmonthdate",
                     "field": "date",
-                    "type": "ordinal"
+                    "type": "temporal"
                 },
                 "y": {
                     "field": "users_published",
@@ -52,8 +52,8 @@
                         "baseline": "middle",
                         "fontSize": 9,
                         "angle": 90,
-                        "dx": -1,
-                        "dy": 1
+                        "dx": -3,
+                        "dy": -4
                     }
                 }
             ]
@@ -63,7 +63,40 @@
                 "x": {
                     "timeUnit": "utcmonthdate",
                     "field": "date",
-                    "type": "ordinal"
+                    "type": "temporal",
+                    "axis": {
+                        "labelAngle": 0,
+                        "tickCount": "week",
+                        "labelExpr": "[timeFormat(datum.value, '%d'), timeFormat(datum.value, '%d') <= '07' ? timeFormat(datum.value, '%b') : '']",
+                        "gridDash": {
+                            "condition": {
+                                "test": {
+                                    "field": "value",
+                                    "timeUnit": "day",
+                                    "equal": 1
+                                },
+                                "value": []
+                            },
+                            "value": [
+                                2,
+                                2
+                            ]
+                        },
+                        "tickDash": {
+                            "condition": {
+                                "test": {
+                                    "field": "value",
+                                    "timeUnit": "day",
+                                    "equal": 1
+                                },
+                                "value": []
+                            },
+                            "value": [
+                                2,
+                                2
+                            ]
+                        }
+                    }
                 },
                 "y": {
                     "field": "sum_published",
