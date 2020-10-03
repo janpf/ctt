@@ -1,3 +1,4 @@
+import datetime
 import json
 from collections import defaultdict
 from pathlib import Path
@@ -25,6 +26,7 @@ for f in sorted(Path("page/users_hourly").iterdir()):
     for line in lines:
         if "called with" in line:
             multiplierForPacket = int(line.split(":")[1].split(",")[0].split("=")[1])
+            break
         if "Padding" in line:
             multiplierForPacket = int(line.split(":")[-1])
         if "not padded" in line:
@@ -51,6 +53,9 @@ risk_levels = 9
 
 for f in sorted(Path("page/json_hourly").iterdir()):
     if f.name == ".gitkeep":
+        continue
+    if "-3." in f.name and datetime.datetime.fromisoformat(f.stem[: f.stem.rfind("-")]) >= datetime.datetime.fromisoformat("2020-09-25"):
+        print("skipping", f.name)
         continue
     print(f)
     jf = json.loads(f.read_text())
@@ -89,6 +94,9 @@ for date in set([val["publishedOn"] for val in keys] + [val["validOn"] for val i
 usersByCount = []
 for f in sorted(Path("page/users_hourly").iterdir()):
     if f.name == ".gitkeep":
+        continue
+    if "-3." in f.name and datetime.datetime.fromisoformat(f.stem[: f.stem.rfind("-")]) >= datetime.datetime.fromisoformat("2020-09-25"):
+        print("skipping", f.name)
         continue
     print(f)
     with open(f) as tmp:
@@ -135,7 +143,7 @@ if values[-1]["valid"] == 0:
 for date in usersByCount:
     s = sum([(val["user_count"] * val["key_count"]) for val in usersByCount if val["date"] == date["date"]])
     if s > 0:
-        date["average_key_count_per_user"] = s / [val for val in values if val["date"] == date["date"]][0]["users_published"]
+        date["average_key_count_per_user"] = s / sum([val["user_count"] for val in usersByCount if val["date"] == date["date"]])
 
 for val in values:
     if val["date"] not in [v["date"] for v in usersByCount]:
