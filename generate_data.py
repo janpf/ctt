@@ -97,9 +97,8 @@ for f in sorted(Path("page/users_hourly").iterdir()):
     if f.name == ".gitkeep":
         continue
     if "-3." in f.name and datetime.datetime.fromisoformat(f.stem[: f.stem.rfind("-")]) >= datetime.datetime.fromisoformat("2020-09-25"):
-        pass
-        # print("skipping", f.name)
-        # continue
+        print("skipping", f.name)
+        continue
     print(f)
     with open(f) as tmp:
         last_line = tmp.readlines()[-1]
