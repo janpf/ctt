@@ -11,9 +11,14 @@ with open("page/plots/data.json") as f:
 
 known_ranges: List[Dict[str, str]] = []
 
-known_ranges.append({"start": "2020-09-01", "end": "2020-09-21", "known_count": 2350})
-known_ranges.append({"start": "2020-06-14", "end": "2020-09-21", "known_count": 5032})
-known_ranges.append({"start": "2020-08-22", "end": "2020-09-21", "known_count": 3200})
+known_ranges.append({"start": "2020-08-31", "end": "2020-09-21", "known_count": 2350})  # 3 wochen
+known_ranges.append({"start": "2020-06-14", "end": "2020-09-21", "known_count": 5032})  # overall
+known_ranges.append({"start": "2020-08-22", "end": "2020-09-21", "known_count": 3200})  # last 30 days
+
+known_ranges.append({"start": "2020-06-14", "end": "2020-10-01", "known_count": 7120})  # overall
+known_ranges.append({"start": "2020-09-01", "end": "2020-10-01", "known_count": 4323})  # last month
+known_ranges.append({"start": "2020-09-03", "end": "2020-10-01", "known_count": 4302})  # last 4 weeks
+known_ranges.append({"start": "2020-09-24", "end": "2020-10-01", "known_count": 1435})  # last week
 
 for k_range in known_ranges:
     k_range["my_count"] = 0
