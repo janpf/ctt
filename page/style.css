@@ -41,6 +41,15 @@ body {
   flex-direction: column;
 }
 
+.graph-vega{
+  width: 100%
+}
+
+.graph-annotation{
+  width:75%;
+  margin:auto;
+}
+
 .heading {
   grid-column: 1;
   grid-row: 1;
@@ -49,5 +58,11 @@ body {
 .sources {
   grid-row: 5;
   grid-column: 1/3;
-  width: 60%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.sources td {
+  border: 1em solid transparent;
+  white-space:nowrap;
 }
