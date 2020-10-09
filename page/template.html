@@ -12,6 +12,7 @@
 </head>
 
 <body class="container">
+
     <span class="row">
         <span class="graph">
             <h1>Corona Tracker Tracker</h1>
@@ -39,6 +40,39 @@
             Alternative dashboard by <a href="https://github.com/micb25" target="_blank">Michael Böhme</a> available <a
                 href="https://micb25.github.io/dka/" target="_blank">here</a>
         </div>
+    </span>
+
+    <span class="row">
+        <span class="left graph">
+            <div id="usercountVis"></div>
+            <div>
+                ↑ <a href="https://github.com/mh-/diagnosis-keys/blob/master/doc/algorithm.md#counting-users"
+                    target="_blank">
+                    close estimate
+                </a>
+                until
+                <a href="https://github.com/corona-warn-app/cwa-documentation/issues/343" target="_blank">
+                    #343
+                </a>
+                fixed
+            </div>
+        </span>
+        <span class="right graph">
+            <div id="userPublishedByCountVis"></div>
+            <div>
+                ↑ <a href="https://github.com/mh-/diagnosis-keys/blob/master/doc/algorithm.md#counting-keys-per-user"
+                    target="_blank">
+                    close estimate
+                </a>
+                until
+                <a href="https://github.com/corona-warn-app/cwa-documentation/issues/343" target="_blank">
+                    #343
+                </a>
+                fixed
+                <br>
+                hover over graph for more information
+            </div>
+        </span>
     </span>
 
     <span class="row">
@@ -89,39 +123,6 @@
             <div id="publishedByRiskVis"></div>
             <div>
                 ↑ number of keys published, split by their risk level
-                <br>
-                hover over graph for more information
-            </div>
-        </span>
-    </span>
-
-    <span class="row">
-        <span class="left graph">
-            <div id="usercountVis"></div>
-            <div>
-                ↑ <a href="https://github.com/mh-/diagnosis-keys/blob/master/doc/algorithm.md#counting-users"
-                    target="_blank">
-                    close estimate
-                </a>
-                until
-                <a href="https://github.com/corona-warn-app/cwa-documentation/issues/343" target="_blank">
-                    #343
-                </a>
-                fixed
-            </div>
-        </span>
-        <span class="right graph">
-            <div id="userPublishedByCountVis"></div>
-            <div>
-                ↑ <a href="https://github.com/mh-/diagnosis-keys/blob/master/doc/algorithm.md#counting-keys-per-user"
-                    target="_blank">
-                    close estimate
-                </a>
-                until
-                <a href="https://github.com/corona-warn-app/cwa-documentation/issues/343" target="_blank">
-                    #343
-                </a>
-                fixed
                 <br>
                 hover over graph for more information
             </div>
