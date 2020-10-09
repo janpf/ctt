@@ -18,7 +18,12 @@ known_ranges.append({"start": "2020-08-22", "end": "2020-09-21", "known_count": 
 known_ranges.append({"start": "2020-06-14", "end": "2020-10-01", "known_count": 7120})  # overall
 known_ranges.append({"start": "2020-09-01", "end": "2020-10-01", "known_count": 4323})  # last month
 known_ranges.append({"start": "2020-09-03", "end": "2020-10-01", "known_count": 4302})  # last 4 weeks
-known_ranges.append({"start": "2020-09-24", "end": "2020-10-01", "known_count": 1435})  # last week
+known_ranges.append({"start": "2020-09-25", "end": "2020-10-01", "known_count": 1435})  # last week
+
+known_ranges.append({"start": "2020-06-14", "end": "2020-10-08", "known_count": 9249})  # overall
+known_ranges.append({"start": "2020-09-01", "end": "2020-10-06", "known_count": 5972})  # testergebnisse
+known_ranges.append({"start": "2020-09-11", "end": "2020-10-08", "known_count": 5751})  # last 4 weeks
+known_ranges.append({"start": "2020-10-02", "end": "2020-10-08", "known_count": 2128})  # last week
 
 for k_range in known_ranges:
     k_range["my_count"] = 0
@@ -73,59 +78,6 @@ print(json.dumps(known_ranges, indent=True))
   "start": "2020-06-14",
   "end": "2020-10-01",
   "known_count": 7120,
-  "my_count": 6459,
-  "daily_count": 6946
- },
- {
-  "start": "2020-09-01",
-  "end": "2020-10-01",
-  "known_count": 4323,
-  "my_count": 4018,
-  "daily_count": 4492
- },
- {
-  "start": "2020-09-03",
-  "end": "2020-10-01",
-  "known_count": 4302,
-  "my_count": 3811,
-  "daily_count": 4285
- },
- {
-  "start": "2020-09-24",
-  "end": "2020-10-01",
-  "known_count": 1435,
-  "my_count": 1066,
-  "daily_count": 1542
- }
-]
-"""
-""" my_count == using hourly files, not skipping 3 oclock packages
-[
- {
-  "start": "2020-08-31",
-  "end": "2020-09-21",
-  "known_count": 2350,
-  "my_count": 2591,
-  "daily_count": 2589
- },
- {
-  "start": "2020-06-14",
-  "end": "2020-09-21",
-  "known_count": 5032,
-  "my_count": 4967,
-  "daily_count": 4978
- },
- {
-  "start": "2020-08-22",
-  "end": "2020-09-21",
-  "known_count": 3200,
-  "my_count": 3252,
-  "daily_count": 3250
- },
- {
-  "start": "2020-06-14",
-  "end": "2020-10-01",
-  "known_count": 7120,
   "my_count": 6936,
   "daily_count": 6946
  },
@@ -144,12 +96,39 @@ print(json.dumps(known_ranges, indent=True))
   "daily_count": 4285
  },
  {
-  "start": "2020-09-24",
+  "start": "2020-09-25",
   "end": "2020-10-01",
   "known_count": 1435,
-  "my_count": 1543,
-  "daily_count": 1542
+  "my_count": 1337,
+  "daily_count": 1336
+ },
+ {
+  "start": "2020-06-14",
+  "end": "2020-10-08",
+  "known_count": 9249,
+  "my_count": 9184,
+  "daily_count": 9193
+ },
+ {
+  "start": "2020-09-01",
+  "end": "2020-10-06",
+  "known_count": 5972,
+  "my_count": 5716,
+  "daily_count": 5712
+ },
+ {
+  "start": "2020-09-11",
+  "end": "2020-10-08",
+  "known_count": 5751,
+  "my_count": 5741,
+  "daily_count": 5738
+ },
+ {
+  "start": "2020-10-02",
+  "end": "2020-10-08",
+  "known_count": 2128,
+  "my_count": 2248,
+  "daily_count": 2247
  }
 ]
-
 """
