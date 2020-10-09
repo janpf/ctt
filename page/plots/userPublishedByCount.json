@@ -12,47 +12,49 @@
       "as": "tt"
     }
   ],
+  "encoding": {
+    "x": {
+      "timeUnit": "utcmonthdate",
+      "field": "date",
+      "type": "temporal",
+      "axis": {
+        "labelAngle": 0,
+        "tickCount": "week",
+        "labelExpr": "[timeFormat(datum.value, '%d'), timeFormat(datum.value, '%d') <= '07' ? timeFormat(datum.value, '%b') : '']",
+        "gridDash": {
+          "condition": {
+            "test": {
+              "field": "value",
+              "timeUnit": "day",
+              "equal": 1
+            },
+            "value": []
+          },
+          "value": [
+            2,
+            2
+          ]
+        },
+        "tickDash": {
+          "condition": {
+            "test": {
+              "field": "value",
+              "timeUnit": "day",
+              "equal": 1
+            },
+            "value": []
+          },
+          "value": [
+            2,
+            2
+          ]
+        }
+      }
+    }
+  },
   "layer": [
     {
       "encoding": {
-        "x": {
-          "timeUnit": "utcmonthdate",
-          "field": "date",
-          "type": "temporal",
-          "axis": {
-            "labelAngle": 0,
-            "tickCount": "week",
-            "labelExpr": "[timeFormat(datum.value, '%d'), timeFormat(datum.value, '%d') <= '07' ? timeFormat(datum.value, '%b') : '']",
-            "gridDash": {
-              "condition": {
-                "test": {
-                  "field": "value",
-                  "timeUnit": "day",
-                  "equal": 1
-                },
-                "value": []
-              },
-              "value": [
-                2,
-                2
-              ]
-            },
-            "tickDash": {
-              "condition": {
-                "test": {
-                  "field": "value",
-                  "timeUnit": "day",
-                  "equal": 1
-                },
-                "value": []
-              },
-              "value": [
-                2,
-                2
-              ]
-            }
-          }
-        },
         "y": {
           "field": "key_count",
           "type": "quantitative",
@@ -107,11 +109,6 @@
         "point": true
       },
       "encoding": {
-        "x": {
-          "timeUnit": "utcmonthdate",
-          "field": "date",
-          "type": "temporal"
-        },
         "y": {
           "field": "average_key_count_per_user",
           "type": "quantitative"
@@ -131,16 +128,6 @@
           "mark": {
             "type": "rule",
             "color": "gray"
-          },
-          "encoding": {
-            "x": {
-              "timeUnit": "utcmonthdate",
-              "field": "date",
-              "type": "temporal",
-              "axis": {
-                "labelAngle": 0
-              }
-            }
           }
         },
         {
@@ -148,14 +135,6 @@
             "text": {
               "type": "text",
               "field": "tt"
-            },
-            "x": {
-              "timeUnit": "utcmonthdate",
-              "field": "date",
-              "type": "temporal",
-              "axis": {
-                "labelAngle": 0
-              }
             },
             "y": {
               "type": "quantitative",

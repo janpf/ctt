@@ -17,14 +17,49 @@
             ]
         }
     ],
+    "encoding": {
+        "x": {
+            "timeUnit": "utcmonthdate",
+            "field": "date",
+            "type": "temporal",
+            "axis": {
+                "labelAngle": 0,
+                "tickCount": "week",
+                "labelExpr": "[timeFormat(datum.value, '%d'), timeFormat(datum.value, '%d') <= '07' ? timeFormat(datum.value, '%b') : '']",
+                "gridDash": {
+                    "condition": {
+                        "test": {
+                            "field": "value",
+                            "timeUnit": "day",
+                            "equal": 1
+                        },
+                        "value": []
+                    },
+                    "value": [
+                        2,
+                        2
+                    ]
+                },
+                "tickDash": {
+                    "condition": {
+                        "test": {
+                            "field": "value",
+                            "timeUnit": "day",
+                            "equal": 1
+                        },
+                        "value": []
+                    },
+                    "value": [
+                        2,
+                        2
+                    ]
+                }
+            }
+        }
+    },
     "layer": [
         {
             "encoding": {
-                "x": {
-                    "timeUnit": "utcmonthdate",
-                    "field": "date",
-                    "type": "temporal"
-                },
                 "y": {
                     "field": "users_published",
                     "type": "quantitative",
@@ -60,44 +95,6 @@
         },
         {
             "encoding": {
-                "x": {
-                    "timeUnit": "utcmonthdate",
-                    "field": "date",
-                    "type": "temporal",
-                    "axis": {
-                        "labelAngle": 0,
-                        "tickCount": "week",
-                        "labelExpr": "[timeFormat(datum.value, '%d'), timeFormat(datum.value, '%d') <= '07' ? timeFormat(datum.value, '%b') : '']",
-                        "gridDash": {
-                            "condition": {
-                                "test": {
-                                    "field": "value",
-                                    "timeUnit": "day",
-                                    "equal": 1
-                                },
-                                "value": []
-                            },
-                            "value": [
-                                2,
-                                2
-                            ]
-                        },
-                        "tickDash": {
-                            "condition": {
-                                "test": {
-                                    "field": "value",
-                                    "timeUnit": "day",
-                                    "equal": 1
-                                },
-                                "value": []
-                            },
-                            "value": [
-                                2,
-                                2
-                            ]
-                        }
-                    }
-                },
                 "y": {
                     "field": "sum_published",
                     "type": "quantitative",
@@ -105,10 +102,6 @@
                         "title": "running total of users who published keys",
                         "titleColor": "#b4464b"
                     }
-                },
-                "text": {
-                    "field": "sum_published",
-                    "type": "quantitative"
                 }
             },
             "layer": [
