@@ -80,13 +80,13 @@
                 {
                     "mark": {
                         "type": "text",
-                        "color": "steelblue",
+                        "color": "darkblue",
                         "align": "right",
                         "baseline": "middle",
                         "fontSize": 9,
                         "angle": 90,
                         "dx": -3,
-                        "dy": -4
+                        "dy": -3
                     }
                 }
             ]
