@@ -4,7 +4,6 @@ sys.path.insert(1, "../diagnosis-keys/")
 
 from lib.diagnosis_keys import *
 from lib.diagnosis_key import DiagnosisKey
-from lib.count_users import count_users
 import argparse
 from pathlib import Path
 
@@ -14,7 +13,9 @@ parser.add_argument("-d", "--diagnosiskeys", type=str, default="testExport-2-rec
 parser.add_argument("-a", "--auto_multiplier_detect", action="store_true", help="detect the multiplier automatically")
 parser.add_argument("-n", "--new-android-apps-only", action="store_true", help="assume that no 'old' Android apps uploaded keys")
 parser.add_argument("-m", "--multiplier", type=int, default=10, help="padding multiplier (RANDOM_KEY_PADDING_MULTIPLIER as set on cwa-server)")
+parser.add_argument("-v", "--version", type=str, default="v1", help="protocol version")
 args = parser.parse_args()
+
 
 dk_file_name = args.diagnosiskeys
 dk = DiagnosisKeys(dk_file_name)
@@ -24,4 +25,12 @@ dk_list = [DiagnosisKey(tek.key_data, tek.rolling_start_interval_number, tek.rol
 
 print("approximated user count according to https://github.com/corona-warn-app/cwa-documentation/issues/258#issuecomment-650700745")
 print(f"called with: multiplier={args.multiplier}, auto_multiplier_detect={args.auto_multiplier_detect}, new_android_apps_only={args.new_android_apps_only}")
-count_users(dk_list, auto_multiplier_detect=args.auto_multiplier_detect, multiplier=args.multiplier, new_android_apps_only=args.new_android_apps_only)
+
+if args.version == "v1.5":
+    from lib.count_users_v1_5 import count_users
+
+    count_users(dk_list, auto_multiplier_detect=args.auto_multiplier_detect, padding_multiplier=args.multiplier)
+else:
+    from lib.count_users import count_users
+
+    count_users(dk_list, auto_multiplier_detect=args.auto_multiplier_detect, multiplier=args.multiplier, new_android_apps_only=args.new_android_apps_only)

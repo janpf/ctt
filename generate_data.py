@@ -89,6 +89,18 @@ values = []
 valuesByRisk = []
 for date in set([val["publishedOn"] for val in keys] + [val["validOn"] for val in keys]):
     values.append({"date": date, "published": data["overall"]["publishDate"].get(date, 0), "users_published": round(sum([1 / k["multiplier"] for k in keys if k["publishedOn"] == date and k["transmissionRiskLevel"] == 6])), "valid": data["overall"]["validDate"].get(date, 0)})
+
+    try:  # this is getting messy
+        with open(f"page/users/{date}.txt") as tmp:
+            content = tmp.readlines()
+            content = [line.strip() for line in content if not line.strip() == ""]
+            last_line = content[-1]
+
+        if "Post-V1.5" in last_line:
+            values[-1]["users_published"] = int(last_line.split(" ")[-1])
+    except:
+        pass
+
     for risk in range(risk_levels):
         valuesByRisk.append({"date": date, "published": data["byRisk"]["publishDate"].get(date, dict()).get(risk, 0), "valid": data["byRisk"]["validDate"].get(date, dict()).get(risk, 0), "risk": risk})
 
@@ -96,38 +108,44 @@ usersByCount = []
 for f in sorted(Path("page/users_hourly").iterdir()):
     if f.name == ".gitkeep":
         continue
-    if "-3." in f.name and datetime.datetime.fromisoformat(f.stem[: f.stem.rfind("-")]) >= datetime.datetime.fromisoformat("2020-09-25"):
+    if "-3." in f.name and (datetime.datetime.fromisoformat("2020-10-17") > datetime.datetime.fromisoformat(f.stem[: f.stem.rfind("-")]) >= datetime.datetime.fromisoformat("2020-09-25")):
         print("skipping", f.name)
         continue
     print(f)
     with open(f) as tmp:
-        last_line = tmp.readlines()[-1]
-    try:
-        user_dist = last_line.split("/")[1].split(",")
-    except:
-        continue
+        content = tmp.readlines()
+        content = [line.strip() for line in content if not line.strip() == ""]
+        last_line = content[-1]
 
-    if "(" in user_dist[-1]:
-        user_dist[-1] = user_dist[-1].split("(")[0]
-    user_dist = [val.strip() for val in user_dist]
-
-    for tpl in user_dist:
+    if "Post-V1.5" in last_line:
+        pass
+    else:
         try:
-            user_count, key_count = tpl.split("*")
+            user_dist = last_line.split("/")[1].split(",")
         except:
             continue
-        user_count = int(user_count)
-        key_count = int(key_count)
-        current_date = [date for date in usersByCount if date["key_count"] == key_count and date["date"] == f.stem[: f.stem.rfind("-")]]
-        if len(current_date) == 0:
-            current_date = dict()
-            current_date["date"] = f.stem[: f.stem.rfind("-")]
-            current_date["key_count"] = key_count
-            current_date["user_count"] = 0
-            usersByCount.append(current_date)
-        else:
-            current_date = current_date[0]
-        current_date["user_count"] += user_count
+
+        if "(" in user_dist[-1]:
+            user_dist[-1] = user_dist[-1].split("(")[0]
+        user_dist = [val.strip() for val in user_dist]
+
+        for tpl in user_dist:
+            try:
+                user_count, key_count = tpl.split("*")
+            except:
+                continue
+            user_count = int(user_count)
+            key_count = int(key_count)
+            current_date = [date for date in usersByCount if date["key_count"] == key_count and date["date"] == f.stem[: f.stem.rfind("-")]]
+            if len(current_date) == 0:
+                current_date = dict()
+                current_date["date"] = f.stem[: f.stem.rfind("-")]
+                current_date["key_count"] = key_count
+                current_date["user_count"] = 0
+                usersByCount.append(current_date)
+            else:
+                current_date = current_date[0]
+            current_date["user_count"] += user_count
 
 
 values.sort(key=lambda x: x["date"])
