@@ -1,5 +1,2 @@
 /json/filehashes.json
     Access-Control-Allow-Origin: *
-
-/plots/data.json
-    Access-Control-Allow-Origin: *
