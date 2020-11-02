@@ -1,11 +1,24 @@
+import argparse
 import hashlib
 import json
 import zipfile
 from pathlib import Path
 
+parser = argparse.ArgumentParser(description="Exposure Notification Diagnosis Key Parser.", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser.add_argument("-c", "--country", type=str, default="DE", help="key server country")
+args = parser.parse_args()
+
+if args.country == "DE":
+    key_dir = Path("page") / "keys"
+    json_dir = Path("page") / "json"
+    out_file = Path("page") / "json" / "filehashes.json"
+else:
+    key_dir = Path("page") / f"keys_{args.country}"
+    json_dir = Path("page") / f"json_{args.country}"
+    out_file = Path("page") / "json" / f"filehashes_{args.country}.json"
 
 hashes = []
-for zfile in sorted(Path("page/keys/").iterdir(), reverse=True):
+for zfile in sorted(key_dir.iterdir(), reverse=True):
     if ".gitkeep" in str(zfile):
         continue
     data = dict()
@@ -17,8 +30,8 @@ for zfile in sorted(Path("page/keys/").iterdir(), reverse=True):
     with zip_data.open([f for f in infolist if ".bin" in f.filename][0], "r") as bin_file:
         data["hash"] = hashlib.sha256(bin_file.read()).hexdigest()
 
-    with open(Path("page/json/") / (zfile.stem + ".json")) as j_file:
+    with open(json_dir / (zfile.stem + ".json")) as j_file:
         data["keyCount"] = json.load(j_file)["keyCount"]
 
-with open("page/json/filehashes.json", "w") as f:
+with open(out_file, "w") as f:
     json.dump(hashes, f, indent=True)

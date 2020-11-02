@@ -13,6 +13,7 @@ page/plots/dataByRisk.json
 page/plots/usersByCount.json
 
 page/json
+page/json_EUR
 page/json_hourly
 page/plaintext
 page/users

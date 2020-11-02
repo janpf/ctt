@@ -44,6 +44,14 @@ jobs:
         working-directory: main
         run: python download_files_hourly.py
 
+      - name: download files europe
+        working-directory: main
+        run: python download_files.py -c EUR
+
+      - name: download hourly files europe
+        working-directory: main
+        run: python download_files_hourly.py -C EUR
+
       - name: generate bash files
         working-directory: main
         run: python generate_bash.py
@@ -55,6 +63,10 @@ jobs:
       - name: generate hourly json files
         working-directory: main
         run: bash create_json_hourly.sh
+
+      - name: generate json files europe
+        working-directory: main
+        run: bash create_json_EUR.sh
 
       - name: generate plaintext files
         working-directory: main
@@ -79,6 +91,10 @@ jobs:
       - name: generate filehashes
         working-directory: main
         run: python generate_filehashes.py
+
+      - name: generate filehashes europe
+        working-directory: main
+        run: python generate_filehashes.py -c EUR
 
       - name: cleanup before publication
         working-directory: main
