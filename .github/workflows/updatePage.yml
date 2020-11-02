@@ -50,7 +50,7 @@ jobs:
 
       - name: download hourly files europe
         working-directory: main
-        run: python download_files_hourly.py -C EUR
+        run: python download_files_hourly.py -c EUR
 
       - name: generate bash files
         working-directory: main
