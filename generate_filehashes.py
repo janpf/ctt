@@ -11,11 +11,11 @@ args = parser.parse_args()
 if args.country == "DE":
     key_dir = Path("page") / "keys"
     json_dir = Path("page") / "json"
-    out_file = Path("page") / "json" / "filehashes.json"
 else:
     key_dir = Path("page") / f"keys_{args.country}"
     json_dir = Path("page") / f"json_{args.country}"
-    out_file = Path("page") / "json" / f"filehashes_{args.country}.json"
+
+out_file = json_dir / "filehashes.json"
 
 hashes = []
 for zfile in sorted(key_dir.iterdir(), reverse=True):
