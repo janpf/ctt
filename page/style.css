@@ -21,6 +21,9 @@ body {
   }
 }
 
+sup {
+  font-size: xx-small;
+}
 
 .left{
   order: 0;
