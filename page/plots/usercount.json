@@ -88,7 +88,8 @@
                         "fontSize": 9,
                         "angle": 90,
                         "dx": -3,
-                        "dy": -3
+                        "dy": -3,
+                        "opacity": 0
                     }
                 }
             ]
