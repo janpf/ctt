@@ -6,10 +6,7 @@ with open("create_plaintext.sh", "w") as cb:
     for f in sorted(Path("page/keys").iterdir()):
         if f.name == ".gitkeep" or f.name == "removed" or f.name == "updated":
             continue
-        if datetime.datetime.fromisoformat(f.stem) >= datetime.datetime.fromisoformat("2020-07-02"):
-            cb.write(f"echo parsing {f}; python ../diagnosis-keys/parse_keys.py -u -n -a -m 9 -d {f} > page/plaintext/{f.stem}.txt &\n")
-        else:
-            cb.write(f"echo parsing {f}; python ../diagnosis-keys/parse_keys.py -u -a -d {f} > page/plaintext/{f.stem}.txt &\n")
+        cb.write(f"echo parsing {f}; python ../diagnosis-keys/parse_keys.py -u -d {f} > page/plaintext/{f.stem}.txt &\n")
 
     cb.write("wait")
 
