@@ -6,7 +6,7 @@ with open("create_plaintext.sh", "w") as cb:
     for f in sorted(Path("page/keys").iterdir()):
         if f.name == ".gitkeep" or f.name == "removed" or f.name == "updated":
             continue
-        cb.write(f"echo parsing {f}; python ../diagnosis-keys/parse_keys.py -u -d {f} > page/plaintext/{f.stem}.txt &\n")
+        cb.write(f"echo parsing {f}; python ../diagnosis-keys/parse_keys.py -d {f} > page/plaintext/{f.stem}.txt &\n")
 
     cb.write("wait")
 
