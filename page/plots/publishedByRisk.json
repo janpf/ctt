@@ -20,7 +20,7 @@
       "axis": {
         "labelAngle": 0,
         "tickCount": "week",
-        "labelExpr": "[timeFormat(datum.value, '%d'), timeFormat(datum.value, '%d') <= '07' ? timeFormat(datum.value, '%b %y') : '']",
+        "labelExpr": "[timeFormat(datum.value, '%d'), timeFormat(datum.value, '%d') < '15' ? timeFormat(datum.value, '%b %y') : '']",
         "gridDash": {
           "condition": {
             "test": {
