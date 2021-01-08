@@ -18,36 +18,31 @@
       "field": "date",
       "type": "temporal",
       "axis": {
-        "labelAngle": 0,
-        "tickCount": "week",
-        "labelExpr": "[timeFormat(datum.value, '%d'), timeFormat(datum.value, '%d') < '15' ? timeFormat(datum.value, '%b %y') : '']",
-        "gridDash": {
-          "condition": {
-            "test": {
-              "field": "value",
-              "timeUnit": "day",
-              "equal": 1
-            },
-            "value": []
-          },
-          "value": [
-            2,
-            2
-          ]
+        "values": {
+          "expr": "utcSequence('day', utc(2019, 0), utc(2022, 12))"
         },
-        "tickDash": {
+        "labelExpr": "[((timeFormat(datum.value, '%d') == '01') | (timeFormat(datum.value, '%d') == '15')) ? timeFormat(datum.value, '%d') : '', timeFormat(datum.value, '%d') == '01' ? timeFormat(datum.value, '%b %y') : '']",
+        "gridColor": {
           "condition": {
             "test": {
               "field": "value",
-              "timeUnit": "day",
+              "timeUnit": "date",
               "equal": 1
             },
-            "value": []
+            "value": "lightgrey"
           },
-          "value": [
-            2,
-            2
-          ]
+          "value": null
+        },
+        "tickColor": {
+          "condition": {
+            "test": {
+              "field": "value",
+              "timeUnit": "date",
+              "equal": 1
+            },
+            "value": "grey"
+          },
+          "value": "lightgrey"
         }
       }
     }

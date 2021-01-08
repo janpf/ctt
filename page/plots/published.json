@@ -1,125 +1,120 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "title": "number of keys published per day",
-    "width": 700,
-    "height": 250,
-    "data": {
-        "url": "./plots/data.json"
-    },
-    "transform": [
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "number of keys published per day",
+  "width": 700,
+  "height": 250,
+  "data": {
+    "url": "./plots/data.json"
+  },
+  "transform": [
+    {
+      "window": [
         {
-            "window": [
-                {
-                    "op": "sum",
-                    "field": "published",
-                    "as": "sum_published"
-                }
-            ]
+          "op": "sum",
+          "field": "published",
+          "as": "sum_published"
         }
-    ],
-    "encoding": {
-        "x": {
-            "timeUnit": "utcyearmonthdate",
-            "field": "date",
-            "type": "temporal",
-            "axis": {
-                "labelAngle": 0,
-                "tickCount": "week",
-                "labelExpr": "[timeFormat(datum.value, '%d'), timeFormat(datum.value, '%d') < '15' ? timeFormat(datum.value, '%b %y') : '']",
-                "gridDash": {
-                    "condition": {
-                        "test": {
-                            "field": "value",
-                            "timeUnit": "day",
-                            "equal": 1
-                        },
-                        "value": []
-                    },
-                    "value": [
-                        2,
-                        2
-                    ]
-                },
-                "tickDash": {
-                    "condition": {
-                        "test": {
-                            "field": "value",
-                            "timeUnit": "day",
-                            "equal": 1
-                        },
-                        "value": []
-                    },
-                    "value": [
-                        2,
-                        2
-                    ]
-                }
-            }
-        }
-    },
-    "layer": [
-        {
-            "encoding": {
-                "y": {
-                    "field": "published",
-                    "type": "quantitative",
-                    "axis": {
-                        "title": "published keys per day",
-                        "titleColor": "steelblue"
-                    }
-                },
-                "text": {
-                    "field": "published",
-                    "type": "quantitative"
-                }
+      ]
+    }
+  ],
+  "encoding": {
+    "x": {
+      "timeUnit": "utcyearmonthdate",
+      "field": "date",
+      "type": "temporal",
+      "axis": {
+        "values": {
+          "expr": "utcSequence('day', utc(2019, 0), utc(2022, 12))"
+        },
+        "labelExpr": "[((timeFormat(datum.value, '%d') == '01') | (timeFormat(datum.value, '%d') == '15')) ? timeFormat(datum.value, '%d') : '', timeFormat(datum.value, '%d') == '01' ? timeFormat(datum.value, '%b %y') : '']",
+        "gridColor": {
+          "condition": {
+            "test": {
+              "field": "value",
+              "timeUnit": "date",
+              "equal": 1
             },
-            "layer": [
-                {
-                    "mark": "bar"
-                },
-                {
-                    "mark": {
-                        "type": "text",
-                        "color": "darkblue",
-                        "align": "right",
-                        "baseline": "middle",
-                        "fontSize": 9,
-                        "angle": 90,
-                        "dx": -3,
-                        "dy": -3,
-                        "opacity": 0
-                    }
-                }
-            ]
+            "value": "lightgrey"
+          },
+          "value": null
+        },
+        "tickColor": {
+          "condition": {
+            "test": {
+              "field": "value",
+              "timeUnit": "date",
+              "equal": 1
+            },
+            "value": "grey"
+          },
+          "value": "lightgrey"
+        }
+      }
+    }
+  },
+  "layer": [
+    {
+      "encoding": {
+        "y": {
+          "field": "published",
+          "type": "quantitative",
+          "axis": {
+            "title": "published keys per day",
+            "titleColor": "steelblue"
+          }
+        },
+        "text": {
+          "field": "published",
+          "type": "quantitative"
+        }
+      },
+      "layer": [
+        {
+          "mark": "bar"
         },
         {
-            "encoding": {
-                "y": {
-                    "field": "sum_published",
-                    "type": "quantitative",
-                    "axis": {
-                        "title": "running total of keys published",
-                        "titleColor": "#b4464b"
-                    }
-                }
+          "mark": {
+            "type": "text",
+            "color": "darkblue",
+            "align": "right",
+            "baseline": "middle",
+            "fontSize": 9,
+            "angle": 90,
+            "dx": -3,
+            "dy": -3,
+            "opacity": 0
+          }
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "y": {
+          "field": "sum_published",
+          "type": "quantitative",
+          "axis": {
+            "title": "running total of keys published",
+            "titleColor": "#b4464b"
+          }
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "line",
+            "interpolate": "monotone",
+            "point": {
+              "color": "#b4464b"
             },
-            "layer": [
-                {
-                    "mark": {
-                        "type": "line",
-                        "interpolate": "monotone",
-                        "point": {
-                            "color": "#b4464b"
-                        },
-                        "color": "#b4464b"
-                    }
-                }
-            ]
+            "color": "#b4464b"
+          }
         }
-    ],
-    "resolve": {
-        "scale": {
-            "y": "independent"
-        }
+      ]
     }
+  ],
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  }
 }

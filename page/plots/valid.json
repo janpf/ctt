@@ -1,71 +1,66 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "title": "number of keys valid per day",
-    "width": 700,
-    "height": 250,
-    "data": {
-        "url": "./plots/data.json"
-    },
-    "encoding": {
-        "x": {
-            "timeUnit": "utcyearmonthdate",
-            "field": "date",
-            "type": "temporal",
-            "axis": {
-                "labelAngle": 0,
-                "tickCount": "week",
-                "labelExpr": "[timeFormat(datum.value, '%d'), timeFormat(datum.value, '%d') < '15' ? timeFormat(datum.value, '%b %y') : '']",
-                "gridDash": {
-                    "condition": {
-                        "test": {
-                            "field": "value",
-                            "timeUnit": "day",
-                            "equal": 1
-                        },
-                        "value": []
-                    },
-                    "value": [
-                        2,
-                        2
-                    ]
-                },
-                "tickDash": {
-                    "condition": {
-                        "test": {
-                            "field": "value",
-                            "timeUnit": "day",
-                            "equal": 1
-                        },
-                        "value": []
-                    },
-                    "value": [
-                        2,
-                        2
-                    ]
-                }
-            }
-        }
-    },
-    "layer": [
-        {
-            "encoding": {
-                "y": {
-                    "field": "valid",
-                    "type": "quantitative",
-                    "axis": {
-                        "title": "keys valid per day"
-                    }
-                }
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "number of keys valid per day",
+  "width": 700,
+  "height": 250,
+  "data": {
+    "url": "./plots/data.json"
+  },
+  "encoding": {
+    "x": {
+      "timeUnit": "utcyearmonthdate",
+      "field": "date",
+      "type": "temporal",
+      "axis": {
+        "values": {
+          "expr": "utcSequence('day', utc(2019, 0), utc(2022, 12))"
+        },
+        "labelExpr": "[((timeFormat(datum.value, '%d') == '01') | (timeFormat(datum.value, '%d') == '15')) ? timeFormat(datum.value, '%d') : '', timeFormat(datum.value, '%d') == '01' ? timeFormat(datum.value, '%b %y') : '']",
+        "gridColor": {
+          "condition": {
+            "test": {
+              "field": "value",
+              "timeUnit": "date",
+              "equal": 1
             },
-            "layer": [
-                {
-                    "mark": {
-                        "type": "line",
-                        "interpolate": "monotone",
-                        "point": true
-                    }
-                }
-            ]
+            "value": "lightgrey"
+          },
+          "value": null
+        },
+        "tickColor": {
+          "condition": {
+            "test": {
+              "field": "value",
+              "timeUnit": "date",
+              "equal": 1
+            },
+            "value": "grey"
+          },
+          "value": "lightgrey"
         }
-    ]
+      }
+    }
+  },
+  "layer": [
+    {
+      "encoding": {
+        "y": {
+          "field": "valid",
+          "type": "quantitative",
+          "axis": {
+            "title": "keys valid per day"
+          }
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "line",
+            "interpolate": "monotone",
+            "point": true
+          }
+        }
+      ]
+    }
+  ]
 }
