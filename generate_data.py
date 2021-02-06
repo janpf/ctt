@@ -1,4 +1,3 @@
-import datetime
 import json
 from collections import defaultdict
 from pathlib import Path
@@ -15,7 +14,7 @@ data["byRisk"]["publishDate"] = dict()
 data["byRisk"]["validDate"] = dict()
 
 multiplier = dict()
-for f in sorted(Path("page/users_hourly").iterdir()):
+for f in sorted(Path("page/users").iterdir()):
     if f.name == ".gitkeep":
         continue
     with open(f) as tmp:
@@ -43,21 +42,17 @@ for f in sorted(Path("page/users_hourly").iterdir()):
 
     print(f"{f}:\tm({multiplierForPacket})")
 
-    with open(f"page/json_hourly/{f.stem}.json") as f:
-        hourly_packet = json.load(f)
+    with open(f"page/json/{f.stem}.json") as f:
+        daily_packet = json.load(f)
 
-    for key in hourly_packet["diagnosisKeys"]:
+    for key in daily_packet["diagnosisKeys"]:
         multiplier[key["TemporaryExposureKey"]] = multiplierForPacket
 
 risk_levels = 9
 
-for f in sorted(Path("page/json_hourly").iterdir()):
+for f in sorted(Path("page/json").iterdir()):
     if f.name == ".gitkeep":
         continue
-    if "-3." in f.name and datetime.datetime.fromisoformat(f.stem[: f.stem.rfind("-")]) >= datetime.datetime.fromisoformat("2020-09-25"):
-        pass
-        # print("skipping", f.name)
-        # continue
     print(f)
     jf = json.loads(f.read_text())
     for dk in jf["diagnosisKeys"]:
@@ -105,11 +100,8 @@ for date in set([val["publishedOn"] for val in keys] + [val["validOn"] for val i
         valuesByRisk.append({"date": date, "published": data["byRisk"]["publishDate"].get(date, dict()).get(risk, 0), "valid": data["byRisk"]["validDate"].get(date, dict()).get(risk, 0), "risk": risk})
 
 usersByCount = []
-for f in sorted(Path("page/users_hourly").iterdir()):
+for f in sorted(Path("page/users").iterdir()):
     if f.name == ".gitkeep":
-        continue
-    if "-3." in f.name and (datetime.datetime.fromisoformat("2020-10-17") > datetime.datetime.fromisoformat(f.stem[: f.stem.rfind("-")]) >= datetime.datetime.fromisoformat("2020-09-25")):
-        print("skipping", f.name)
         continue
     print(f)
     with open(f) as tmp:
@@ -136,10 +128,10 @@ for f in sorted(Path("page/users_hourly").iterdir()):
                 continue
             user_count = int(user_count)
             key_count = int(key_count)
-            current_date = [date for date in usersByCount if date["key_count"] == key_count and date["date"] == f.stem[: f.stem.rfind("-")]]
+            current_date = [date for date in usersByCount if date["key_count"] == key_count and date["date"] == f.stem]
             if len(current_date) == 0:
                 current_date = dict()
-                current_date["date"] = f.stem[: f.stem.rfind("-")]
+                current_date["date"] = f.stem
                 current_date["key_count"] = key_count
                 current_date["user_count"] = 0
                 usersByCount.append(current_date)
@@ -147,7 +139,7 @@ for f in sorted(Path("page/users_hourly").iterdir()):
                 current_date = current_date[0]
             current_date["user_count"] += user_count
 
-
+print("sorting")
 values.sort(key=lambda x: x["date"])
 valuesByRisk.sort(key=lambda x: x["date"])
 usersByCount.sort(key=lambda x: x["date"])
@@ -172,6 +164,7 @@ for val in values:
         filler["key_count"] = 1
         usersByCount.append(filler)
 
+print("saving")
 with open("page/plots/data.json", "w") as f:
     json.dump(values, f, sort_keys=True)
 
