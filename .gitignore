@@ -1,5 +1,6 @@
 pythonenv*
 .vscode
+.gitignore
 
 create_users.sh
 create_users_hourly.sh
