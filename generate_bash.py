@@ -30,6 +30,7 @@ with open("create_users.sh", "w") as cb:
 
     cb.write("wait")
 
+exit()
 # users hourly
 with open("create_users_hourly.sh", "w") as cb:
     for f in sorted(Path("page/keys_hourly").iterdir()):
