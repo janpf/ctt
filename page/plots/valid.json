@@ -54,10 +54,19 @@
       },
       "layer": [
         {
+          "mark": "bar"
+        },
+        {
           "mark": {
-            "type": "line",
-            "interpolate": "monotone",
-            "point": true
+            "type": "text",
+            "color": "darkblue",
+            "align": "right",
+            "baseline": "middle",
+            "fontSize": 9,
+            "angle": 90,
+            "dx": -3,
+            "dy": -3,
+            "opacity": 0
           }
         }
       ]

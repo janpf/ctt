@@ -33,18 +33,14 @@
             Thanks to <a href="https://github.com/mh-" target="_blank">Michael Huebler</a> for building the <a
                 href="https://github.com/mh-/diagnosis-keys" target="_blank">parser</a>
             <br>
-            More raw data can be found here:
-            <a href="https://cwa.malte.io/tek.csv" target="_blank">[CSV]</a>
-            <a href="https://cwa.malte.io/tek.json" target="_blank">[JSON]</a>
-            <a href="https://cwa.malte.io/tek.xlsx" target="_blank">[XLSX]</a>
-            thanks to <a href="https://twitter.com/malteaero/status/1276458483039105024" target="_blank">Malte
-                Janduda</a>
+            Usercount estimation have been removed, because <a href="https://www.coronawarn.app/de/blog/"
+                target="_blank">official numbers</a> are now published
             <br>
-            Alternative dashboard by <a href="https://github.com/micb25" target="_blank">Michael Böhme</a> available <a
-                href="https://micb25.github.io/dka/" target="_blank">here</a>
+            They are plotted in a <a href="https://micb25.github.io/dka/" target="_blank">dashboard</a> by <a
+                href="https://github.com/micb25" target="_blank">Michael Böhme</a>
         </div>
     </span>
-
+    <!--
     <span class="row">
         <span class="left graph">
             <div id="usercountVis" class="graph-vega"></div>
@@ -77,9 +73,14 @@
             </div>
         </span>
     </span>
-
+    -->
     <span class="row">
         <span class="left graph">
+            <div id="publishedVis"></div>
+            <div>
+            </div>
+        </span>
+        <span class="right graph">
             <div id="validVis" class="graph-vega"></div>
             <div class="graph-annotation">
                 ↑ What are
@@ -94,16 +95,18 @@
                 declining recently?
             </div>
         </span>
-        <span class="right graph">
-            <div id="publishedVis"></div>
-            <div>
-
-            </div>
-        </span>
     </span>
 
     <span class="row">
         <span class="left graph">
+            <div id="publishedByRiskVis" class="graph-vega"></div>
+            <div class="graph-annotation">
+                ↑ number of keys published, split by their risk level
+                <br>
+                hover over graph for more information
+            </div>
+        </span>
+        <span class="right graph">
             <div id="validByRiskVis" class="graph-vega"></div>
             <div class="graph-annotation">
                 ↑ number of keys valid, split by their risk level
@@ -117,15 +120,6 @@
                     "valid" keys
                 </a>
                 declining recently?
-                <br>
-                hover over graph for more information
-            </div>
-
-        </span>
-        <span class="right graph">
-            <div id="publishedByRiskVis" class="graph-vega"></div>
-            <div class="graph-annotation">
-                ↑ number of keys published, split by their risk level
                 <br>
                 hover over graph for more information
             </div>
@@ -152,6 +146,7 @@
         vegaEmbed('#publishedByRiskVis', spec).then(function (result) {
         }).catch(console.error);
     </script>
+    <!--
     <script type="text/javascript">
         var spec = "./plots/usercount.json";
         vegaEmbed('#usercountVis', spec).then(function (result) {
@@ -162,6 +157,7 @@
         vegaEmbed('#userPublishedByCountVis', spec).then(function (result) {
         }).catch(console.error);
     </script>
+    -->
 
     <table class="sources">
         {% for date in dates %}
