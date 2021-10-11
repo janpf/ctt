@@ -2,6 +2,7 @@ pythonenv*
 .vscode
 .idea
 .DS_Store
+*.png
 
 create_users.sh
 create_users_hourly.sh

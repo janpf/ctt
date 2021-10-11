@@ -1,166 +1,39 @@
 <head>
     <title>Corona Tracker Tracker</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@janpf95" />
     <meta name="twitter:title" content="Corona Tracker Tracker: ctt.pfstr.de" />
-    <meta name="twitter:description" content="Dashboard tracking statistics about the German Corona-Warn-app" />
+    <meta name="twitter:description" content="Archiving the data packages of the German Corona-Tracing-App" />
     <meta name="twitter:image" content="https://ctt.pfstr.de/Screenshot.png" />
 </head>
 
 <body class="container">
 
     <span class="row">
-        <span class="graph">
+        <span style="margin: auto;">
             <h1>Corona Tracker Tracker<sup><a href="https://xkcd.com/2382/" target="_blank">Tracker</a></sup></h1>
             <div>
-                Corona Tracker Tracker Dashboard for the German Corona-Tracing-app
-                <br>
-                <!--
-                always up to date:
-                <a href="https://github.com/janpf/ctt/actions" target="_blank">
-                    <img style="vertical-align:middle"
-                        src="https://github.com/janpf/ctt/workflows/update%20page/badge.svg">
-                </a>
-                <br>
-                -->
-                source code on <a href="https://github.com/janpf/ctt" target="_blank">github</a>; raw data below
+                Archiving the data packages of the German Corona-Tracing-App;
+                source code on
+                <a href="https://github.com/janpf/ctt" target="_blank">github</a>
             </div>
-        </span>
-        <div>
-            <br>
-            Thanks to <a href="https://github.com/mh-" target="_blank">Michael Huebler</a> for building the <a
-                href="https://github.com/mh-/diagnosis-keys" target="_blank">parser</a>
-            <br>
-            Usercount estimations have been removed, because <a href="https://www.coronawarn.app/de/blog/"
-                target="_blank">official numbers</a> are now published
-            <br>
-            They are plotted in a <a href="https://micb25.github.io/dka/" target="_blank">dashboard</a> by <a
-                href="https://github.com/micb25" target="_blank">Michael Böhme</a>
-        </div>
-    </span>
-    <!--
-    <span class="row">
-        <span class="left graph">
-            <div id="usercountVis" class="graph-vega"></div>
-            <div class="graph-annotation">
-                ↑ <a href="https://github.com/mh-/diagnosis-keys/blob/master/doc/algorithm.md#counting-users"
-                    target="_blank">
-                    estimation prior to v1.5
-                </a>
-                and
-                <a href="https://github.com/mh-/diagnosis-keys/issues/12" target="_blank">
-                    estimation from v1.5 onwards
-                </a>
-            </div>
-        </span>
-        <span class="right graph">
-            <div id="userPublishedByCountVis" class="graph-vega"></div>
-            <div class="graph-annotation">
-                ↑ <a href="https://github.com/mh-/diagnosis-keys/blob/master/doc/algorithm.md#counting-users"
-                    target="_blank">
-                    estimation prior to v1.5
-                </a>
-                <br>
-                hover over graph for more information
-                <br>
-                since v1.5
-                <a href="https://github.com/mh-/diagnosis-keys/issues/12" target="_blank">
-                    too unreliable
-                </a>
-                to estimate, so this graph will not be updated for now
-            </div>
-        </span>
-    </span>
-    -->
-    <span class="row">
-        <span class="left graph">
-            <div id="publishedVis"></div>
             <div>
-            </div>
-        </span>
-        <span class="right graph">
-            <div id="validVis" class="graph-vega"></div>
-            <div class="graph-annotation">
-                ↑ What are
-                <a href="https://github.com/janpf/ctt/issues/1" target="_blank">
-                    "valid" keys?
-                </a>
+                Thanks to
+                <a href="https://github.com/mh-" target="_blank">Michael Huebler</a>
+                for building the
+                <a href="https://github.com/mh-/diagnosis-keys" target="_blank">parser</a>
                 <br>
-                Why are
-                <a href="https://github.com/janpf/ctt/issues/6" target="_blank">
-                    "valid" keys
-                </a>
-                declining recently?
+                Graphs with estimations have been removed, because
+                <a href="https://www.coronawarn.app/de/blog/" target="_blank">exact numbers</a>
+                are plotted
+                <a href="https://micb25.github.io/dka/" target="_blank">here</a>
+                by
+                <a href="https://github.com/micb25" target="_blank">Michael Böhme</a>
             </div>
         </span>
     </span>
-
-    <span class="row">
-        <span class="left graph">
-            <div id="publishedByRiskVis" class="graph-vega"></div>
-            <div class="graph-annotation">
-                ↑ number of keys published, split by their risk level
-                <br>
-                hover over graph for more information
-            </div>
-        </span>
-        <span class="right graph">
-            <div id="validByRiskVis" class="graph-vega"></div>
-            <div class="graph-annotation">
-                ↑ number of keys valid, split by their risk level
-                <br>
-                What are<a href="https://github.com/janpf/ctt/issues/1" target="_blank">
-                    "valid" keys?
-                </a>
-                <br>
-                Why are
-                <a href="https://github.com/janpf/ctt/issues/6" target="_blank">
-                    "valid" keys
-                </a>
-                declining recently?
-                <br>
-                hover over graph for more information
-            </div>
-        </span>
-    </span>
-
-    <script type="text/javascript">
-        var spec = "./plots/valid.json";
-        vegaEmbed('#validVis', spec).then(function (result) {
-        }).catch(console.error);
-    </script>
-    <script type="text/javascript">
-        var spec = "./plots/published.json";
-        vegaEmbed('#publishedVis', spec).then(function (result) {
-        }).catch(console.error);
-    </script>
-    <script type="text/javascript">
-        var spec = "./plots/validByRisk.json";
-        vegaEmbed('#validByRiskVis', spec).then(function (result) {
-        }).catch(console.error);
-    </script>
-    <script type="text/javascript">
-        var spec = "./plots/publishedByRisk.json";
-        vegaEmbed('#publishedByRiskVis', spec).then(function (result) {
-        }).catch(console.error);
-    </script>
-    <!--
-    <script type="text/javascript">
-        var spec = "./plots/usercount.json";
-        vegaEmbed('#usercountVis', spec).then(function (result) {
-        }).catch(console.error);
-    </script>
-    <script type="text/javascript">
-        var spec = "./plots/userPublishedByCount.json";
-        vegaEmbed('#userPublishedByCountVis', spec).then(function (result) {
-        }).catch(console.error);
-    </script>
-    -->
 
     <table class="sources">
         {% for date in dates %}

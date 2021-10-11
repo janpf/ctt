@@ -4,7 +4,9 @@ import json
 import zipfile
 from pathlib import Path
 
-parser = argparse.ArgumentParser(description="Exposure Notification Diagnosis Key Parser.", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser = argparse.ArgumentParser(
+    description="Exposure Notification Diagnosis Key Parser.", formatter_class=argparse.ArgumentDefaultsHelpFormatter
+)
 parser.add_argument("-c", "--country", type=str, default="DE", help="key server country")
 args = parser.parse_args()
 
@@ -19,7 +21,7 @@ out_file = json_dir / "filehashes.json"
 
 hashes = []
 for zfile in sorted(key_dir.iterdir(), reverse=True):
-    if ".gitkeep" in str(zfile):
+    if ".gitkeep" in str(zfile) or "filehashes.json" in str(zfile):
         continue
     data = dict()
     hashes.append(data)
