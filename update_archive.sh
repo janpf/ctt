@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 source /home/janpf/bots/venv/bin/activate
 
 echo "Downloading files"
